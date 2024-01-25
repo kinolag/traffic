@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useState, useEffect, useCallback } from "react";
 import Loader from "./Loader";
-import Selector from "./Selector";
+import Slider from "./Slider";
 import {
   Feature,
   FeatureCollection,
@@ -159,10 +159,6 @@ export default function MapChart({
     setSelectedNode(null);
   }
 
-  const yearsOptions = YEARS.map((v) => {
-    return { value: v, label: v };
-  }).sort((a, b) => +b.value - +a.value);
-
   return (
     <div className="centeredColumn">
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
@@ -222,16 +218,23 @@ export default function MapChart({
                     )
                 )}
                 <AdditionalInfo />
+                <text className="absolute txt-14" fill="teal" x={295} y={40}>
+                  Year {selectedYear}
+                </text>
               </g>
             </svg>
-            <Selector
-              className="absolute"
-              style={{ top: 20, left: w / 2 - 56 }}
-              labelText="Select Year"
-              options={yearsOptions}
-              value={selectedYear}
-              setYear={setSelectedYear}
-            />
+            <div className="absolute slider" style={{ top: 32, right: 50 }}>
+              <Slider
+                background="#eee"
+                colour="teal"
+                value={+selectedYear}
+                min={2000}
+                max={2022}
+                width={220}
+                height={6}
+                setYear={setSelectedYear}
+              />
+            </div>
           </div>
         </>
       )}

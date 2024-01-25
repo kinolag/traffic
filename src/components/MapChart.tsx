@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
+import Selector from "./Selector";
 import {
   Feature,
   FeatureCollection,
@@ -12,7 +13,7 @@ import { Topology } from "topojson-specification";
 import {
   type AvailableArea,
   type AvailableYear,
-  // AREAS,
+  type SelectorOptionValue,
   YEARS,
   TOPO_MAP_DATA,
   TRAFFIC_DATA,
@@ -40,21 +41,19 @@ export default function MapChart({
     | undefined
   >();
 
-  const [selectedYear, setSelectedYear] = useState<AvailableYear>(year);
+  const [selectedYear, setSelectedYear] = useState<SelectorOptionValue>(year);
   const [selectedNode, setSelectedNode] =
     useState<d3.DSVRowString<string> | null>(null);
 
   const AdditionalInfo = () => {
     return (
-      <text className="txt-14" fill="teal" x={30} y={40}>
+      <text className="txt-13" fill="teal" x={30} y={40}>
         {selectedNode ? (
           <>
-            <tspan>
+            <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
+            <tspan x={30} dy="1.5em">
               Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
               {(+selectedNode.Longitude).toFixed(2)}
-            </tspan>
-            <tspan x={30} dy="1.5em">
-              Traffic Point ID: {selectedNode.Count_point_id}
             </tspan>
             <tspan x={30} dy="1.5em">
               Direction of travel: {selectedNode.direction_of_travel}
@@ -166,67 +165,77 @@ export default function MapChart({
   }
 
   return (
-    <div>
+    <div className="centeredColumn">
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
       {!loading && geoMapData && data && (
         <>
           <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear?.length} traffic points in ${TOPO_MAP_DATA[area].label}`}</p>
-          <svg
-            className="radius-8 relative"
-            style={{ border: "1px solid #ccc", width: w, height: h }}
-            viewBox={`0 0 ${w} ${h}`}
-            xmlns="http://www.w3.org/2000/svg"
-            version="1.1"
-          >
-            <g>
-              {generatedPath && (
-                <path
-                  style={{ opacity: 0.3 }}
-                  d={generatedPath}
-                  fill="#ccc"
-                  stroke="black"
-                  strokeWidth={1}
-                />
-              )}
-              <text className="txt-14" fill="teal" x={w - 110} y={40}>
-                Year: {selectedYear}
-              </text>
-              {projectedCoordinates?.map(
-                (coord, i) =>
-                  !!coord && (
-                    <circle
-                      key={i}
-                      cx={coord[0]}
-                      cy={coord[1]}
-                      r={scaleToRadius(+data[i].All_motor_vehicles)}
-                      style={{
-                        fill: scaleValueToColor(+data[i].All_motor_vehicles),
-                        opacity: 0.85,
-                      }}
-                      /* for devices with a mouse */
-                      onMouseOver={() => {
-                        if (dataByYear) {
-                          selectPoint(dataByYear[i]);
-                        }
-                      }}
-                      onMouseOut={() => {
-                        deselectPoint();
-                      }}
-                      /* for touch screen devices */
-                      onPointerDown={() => {
-                        if (dataByYear) {
-                          selectPoint(dataByYear[i]);
-                        }
-                      }}
-                      onPointerUp={() => {
-                        deselectPoint();
-                      }}
-                    />
-                  )
-              )}
-              <AdditionalInfo />
-            </g>
-          </svg>
+          {/* for Selector positioning */}
+          <div className="relative">
+            <svg
+              className="radius-8"
+              style={{ border: "1px solid #ccc", width: w, height: h }}
+              viewBox={`0 0 ${w} ${h}`}
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+            >
+              <g>
+                {generatedPath && (
+                  <path
+                    style={{ opacity: 0.3 }}
+                    d={generatedPath}
+                    fill="#ccc"
+                    stroke="black"
+                    strokeWidth={1}
+                  />
+                )}
+                {projectedCoordinates?.map(
+                  (coord, i) =>
+                    !!coord && (
+                      <circle
+                        key={i}
+                        cx={coord[0]}
+                        cy={coord[1]}
+                        r={scaleToRadius(+data[i].All_motor_vehicles)}
+                        style={{
+                          fill: scaleValueToColor(+data[i].All_motor_vehicles),
+                          opacity: 0.85,
+                        }}
+                        /* for devices with a mouse */
+                        onMouseOver={() => {
+                          if (dataByYear) {
+                            selectPoint(dataByYear[i]);
+                          }
+                        }}
+                        onMouseOut={() => {
+                          deselectPoint();
+                        }}
+                        /* for touch screen devices */
+                        onPointerDown={() => {
+                          if (dataByYear) {
+                            selectPoint(dataByYear[i]);
+                          }
+                        }}
+                        onPointerUp={() => {
+                          deselectPoint();
+                        }}
+                      />
+                    )
+                )}
+                <AdditionalInfo />
+              </g>
+            </svg>
+            <Selector
+              className="absolute"
+              style={{ top: 22, left: w / 2 - 54 }}
+              optionName="Year"
+              options={YEARS.map((v) => {
+                return { value: v, label: v };
+              }).sort((a, b) => +b.value - +a.value)}
+              value={selectedYear}
+              setValue={setSelectedYear}
+            />
+          </div>
         </>
       )}
     </div>

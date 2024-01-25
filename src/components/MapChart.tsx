@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import {
   Feature,
-  // Point,
   FeatureCollection,
   Geometry,
   GeoJsonProperties,
@@ -33,13 +32,14 @@ export default function MapChart({
   h = 650,
 }: MapChartProps) {
   const [loading, setLoading] = useState<boolean>(false);
+
   const [data, setData] = useState<d3.DSVRowArray<string>>();
-  // Feature<Point, GeoJsonProperties> | undefined
   const [geoMapData, setGeoMapData] = useState<
     | FeatureCollection<Geometry, GeoJsonProperties>
     | Feature<Geometry, GeoJsonProperties>
     | undefined
   >();
+
   const [selectedYear, setSelectedYear] = useState<AvailableYear>(year);
   const [selectedNode, setSelectedNode] =
     useState<d3.DSVRowString<string> | null>(null);
@@ -87,9 +87,7 @@ export default function MapChart({
         const trafficData: d3.DSVRowArray<string> | undefined = await d3.csv(
           TRAFFIC_DATA[area].trafficDataFile
         );
-        // setData(trafficData);
 
-        // Topology<Objects<GeoJsonProperties>>
         let topoData: Topology | undefined;
         let geoData:
           | FeatureCollection<Geometry, GeoJsonProperties>
@@ -97,22 +95,16 @@ export default function MapChart({
           | undefined;
 
         if (TOPO_MAP_DATA[area].mapDataFileType === "geoJson") {
-          // console.log("GEO case");
           geoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
         } else {
           topoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
-          // console.log(topoData);
           if (!!topoData) {
-            // console.log("TOPO case");
             geoData = topojson.feature(
               topoData,
               topoData.objects[TOPO_MAP_DATA[area].objectName]
             );
           }
         }
-
-        // setGeoMapData(geoData);
-        // console.log(geoData);
 
         Promise.all([trafficData, geoData]).then((values) => {
           setData(values[0]);
@@ -129,7 +121,6 @@ export default function MapChart({
 
   const projection: d3.GeoProjection = d3
     .geoMercator()
-    // .geoEquirectangular()
     .center(TOPO_MAP_DATA[area].center)
     .translate([w / 2, h / 2])
     .scale(TOPO_MAP_DATA[area].scale);
@@ -137,13 +128,7 @@ export default function MapChart({
   // any added here as cannot fix d3/ts error
   const geoGenerator: any = d3.geoPath().projection(projection);
 
-  // fit path to SVG size
-  //   const identity = d3.geoIdentity();
-  //   const path = d3.geoPath(identity);
-  //   identity.fitSize([w, h], geoMapData).reflectY(true);
-
   const generatedPath: string = geoGenerator(geoMapData);
-  // console.log(generatedPath);
 
   const dataByYear = data?.filter((d) => d.Year === selectedYear);
 
@@ -161,23 +146,22 @@ export default function MapChart({
       extent.map((v) => (v ? +v : 0)),
       [1, 0] // get blue for lowest, red for highest
     );
-    // return d3.interpolateRdYlBu(scaled(amount));
     return d3.interpolateSpectral(scaled(amount));
   };
 
   const scaleToRadius = (amount: number): number => {
     const scaled = d3.scaleLinear(
       extent.map((v) => (v ? +v : 0)),
-      [2, 16] // may vary: [0, 1] [1, 14] [2, 16]
+      [2, 14] // may vary: [0, 1] [1, 14] [2, 16]
     );
     return scaled(amount);
   };
 
-  function selectCircle(d: d3.DSVRowString<string>): void {
+  function selectPoint(d: d3.DSVRowString<string>): void {
     setSelectedNode(d);
   }
 
-  function deselectCircle(): void {
+  function deselectPoint(): void {
     setSelectedNode(null);
   }
 
@@ -190,7 +174,6 @@ export default function MapChart({
           <svg
             className="radius-8 relative"
             style={{ border: "1px solid #ccc", width: w, height: h }}
-            /* removing width and height from here, moving to style */
             viewBox={`0 0 ${w} ${h}`}
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
@@ -218,26 +201,25 @@ export default function MapChart({
                       r={scaleToRadius(+data[i].All_motor_vehicles)}
                       style={{
                         fill: scaleValueToColor(+data[i].All_motor_vehicles),
-                        // stroke: "black",
                         opacity: 0.85,
                       }}
                       /* for devices with a mouse */
                       onMouseOver={() => {
                         if (dataByYear) {
-                          selectCircle(dataByYear[i]);
+                          selectPoint(dataByYear[i]);
                         }
                       }}
                       onMouseOut={() => {
-                        deselectCircle();
+                        deselectPoint();
                       }}
                       /* for touch screen devices */
                       onPointerDown={() => {
                         if (dataByYear) {
-                          selectCircle(dataByYear[i]);
+                          selectPoint(dataByYear[i]);
                         }
                       }}
                       onPointerUp={() => {
-                        deselectCircle();
+                        deselectPoint();
                       }}
                     />
                   )

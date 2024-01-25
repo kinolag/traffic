@@ -1,3 +1,158 @@
-.App {
+.centeredColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader {
+  border: 10px solid transparent;
+  border-top: 10px solid darkslategrey;
+  border-bottom: 10px solid darkslategrey;
+  border-radius: 50%;
+  opacity: 0.85;
+  width: 48px;
+  height: 48px;
+  animation: spin 1.5s linear infinite;
+}
+
+.blinkPartial {
+  animation: blinkStaying 1.6s infinite;
+}
+
+/* animations */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blinkStaying {
+  0% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}
+
+/* modifiers */
+
+.txt-c {
   text-align: center;
+}
+
+.mar-5 {
+  margin: 5px 5px;
+}
+
+.pad-5 {
+  padding: 5px 5px;
+}
+
+.radius-4 {
+  border-radius: 4px;
+}
+
+.radius-8 {
+  border-radius: 8px;
+}
+
+.shadow-f80 {
+  opacity: 0.92;
+  filter: drop-shadow(0px 1px 1px #f80);
+}
+
+.shadow-ddd {
+  opacity: 0.92;
+  filter: drop-shadow(0px 1px 1px #ddd);
+}
+
+.shadow-ccc {
+  opacity: 0.92;
+  filter: drop-shadow(0px 1px 1px #ccc);
+}
+
+.shadow-bbb {
+  opacity: 0.92;
+  filter: drop-shadow(0px 1px 1px #bbb);
+}
+
+.bg-fc0 {
+  background-color: rgba(255, 204, 0, 0.36);
+}
+
+.bg-f80 {
+  background-color: rgba(255, 136, 0, 0.72);
+}
+
+.is-f80 {
+  color: #f80;
+}
+
+.is-orangered {
+  color: orangered;
+}
+
+.is-f00 {
+  color: #f00;
+}
+
+.is-slategrey {
+  color: slategrey;
+}
+
+.is-dsb {
+  color: darkslateblue;
+}
+
+.is-teal {
+  color: teal;
+}
+
+/* links */
+
+.a1 {
+  text-decoration: underline;
+  color: slategrey;
+}
+
+.a1:hover {
+  text-decoration: none;
+  color: #ff5000;
+}
+
+.a2 {
+  text-decoration: underline;
+  color: #ff8000;
+}
+
+.a2:hover {
+  text-decoration: none;
+  color: #ff5000;
+}
+
+.a3 {
+  text-decoration: underline;
+  color: black;
+}
+
+.a3:hover {
+  text-decoration: none;
+  color: red;
+}
+
+/* elements */
+
+header {
+  width: 650px;
+  margin: 5px;
+  margin-bottom: 0px;
+  border: 1px dotted #ccc;
 }

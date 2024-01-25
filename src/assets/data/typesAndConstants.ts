@@ -32,7 +32,7 @@ export type AvailableYear =
 
 export type SelectorOptionValue = AvailableArea | AvailableYear;
 
-export type Areas = Array<{ value: AvailableArea; label: string }>;
+export type Areas = Array<{ value: AvailableArea, label: string }>;
 
 export type Years = Array<AvailableYear>;
 
@@ -68,7 +68,6 @@ export const YEARS: Years = [
   "2021",
   "2022",
 ];
-
 
 type MapDataFileType = "geoJson" | "topoJson";
 

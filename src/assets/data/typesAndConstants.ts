@@ -109,7 +109,7 @@ export const TOPO_MAP_DATA: MapData = {
     mapDataFile: "./data/topoJson/london/lewisham/topo_E09000023.json",
     mapDataFileType: "topoJson",
     objectName: "E09000023",
-    center: [-0.021, 51.445],
+    center: [-0.021, 51.45],
     scale: 170000,
   },
   southwark: {
@@ -117,7 +117,7 @@ export const TOPO_MAP_DATA: MapData = {
     mapDataFile: "./data/topoJson/london/southwark/topo_E09000028.json",
     mapDataFileType: "topoJson",
     objectName: "E09000028",
-    center: [-0.08, 51.465],
+    center: [-0.08, 51.47],
     scale: 170000,
   },
   towerHamlets: {

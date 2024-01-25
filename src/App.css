@@ -9,7 +9,7 @@ header {
   width: 650px;
   margin: 5px;
   margin-bottom: 0px;
-  border: 1px dotted #ccc;
+  border: 1px dotted darkslategrey;
 }
 
 /* wrappers */
@@ -129,6 +129,10 @@ header {
 
 .is-slategrey {
   color: slategrey;
+}
+
+.is-dsg {
+  color: darkslategrey;
 }
 
 .is-dsb {

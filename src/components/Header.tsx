@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="txt-c radius-8">
+    <header className="txt-c radius-8 is-slategrey">
       <h3>Traffic app: built with TS, React and D3</h3>
       <p>
         developed by{" "}

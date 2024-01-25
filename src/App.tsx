@@ -8,23 +8,14 @@ import MapChart from "./components/MapChart";
  * (or enable PUBLIC_URL in .env only at build)
  * */
 
-// export type Areas = Array<AvailableArea>;
-
-// const AREAS: Areas = [
-//   { value: "greenwich", label: "Greenwich" },
-//   { value: "lewisham", label: "Lewisham" },
-//   { value: "southwark", label: "Southwark" },
-//   { value: "towerHamlets", label: "Tower Hamlets" },
-// ];
-
 function App() {
   console.log("App render");
   return (
     <div className="centeredColumn">
-      <Header/>
+      <Header />
       <main>
         {/* <MapChart area="gb" /> */}
-        <MapChart area="towerHamlets" />
+        {/* <MapChart area="towerHamlets" /> */}
         <MapChart area="southwark" />
         <MapChart area="lewisham" />
         <MapChart area="greenwich" />

@@ -67,8 +67,52 @@ header {
   position: absolute;
 }
 
+.txt-l {
+  text-align: left;
+}
+
 .txt-c {
   text-align: center;
+}
+
+.txt-r {
+  text-align: right;
+}
+
+.txt-18 {
+  font-size: 18px;
+}
+
+.txt-16 {
+  font-size: 16px;
+}
+
+.txt-15 {
+  font-size: 15px;
+}
+
+.txt-14 {
+  font-size: 14px;
+}
+
+.txt-12 {
+  font-size: 12px;
+}
+
+.txt-10 {
+  font-size: 10px;
+}
+
+.space-04 {
+  letter-spacing: 0.04rem;
+}
+
+.space-08 {
+  letter-spacing: 0.08rem;
+}
+
+.space-25 {
+  letter-spacing: 0.25rem;
 }
 
 .mar-5 {

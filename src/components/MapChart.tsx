@@ -160,7 +160,7 @@ export default function MapChart({
   }
 
   return (
-    <div className="centeredColumn">
+    <div>
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
       {!loading && geoMapData && data && (
         <>
@@ -228,8 +228,8 @@ export default function MapChart({
                 background="#eee"
                 colour="teal"
                 value={+selectedYear}
-                min={2000}
-                max={2022}
+                min={+YEARS[0]}
+                max={+YEARS[YEARS.length - 1]}
                 width={220}
                 height={6}
                 setYear={setSelectedYear}

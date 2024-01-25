@@ -30,6 +30,8 @@ export type AvailableYear =
   | "2021"
   | "2022";
 
+export type SelectorOptionValue = AvailableArea | AvailableYear;
+
 export type Areas = Array<{ value: AvailableArea; label: string }>;
 
 export type Years = Array<AvailableYear>;
@@ -147,5 +149,3 @@ export const TRAFFIC_DATA: TrafficData = {
     trafficDataFile: "./data/csv/tower_hamlets.csv",
   },
 };
-
-// export {};

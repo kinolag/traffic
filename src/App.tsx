@@ -12,10 +12,7 @@ import MapChart from "./components/MapChart";
  * */
 
 function App() {
-  console.log("App render");
-  const [selectedArea, setSelectedArea] = useState<AvailableArea>(
-    AREAS[0].value
-  );
+  const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
   return (
     <div className="centeredColumn">
       <Header />

@@ -223,7 +223,7 @@ export default function MapChart({
                 </text>
               </g>
             </svg>
-            <div className="absolute slider" style={{ top: 32, right: 50 }}>
+            <div className="absolute" style={{ top: 32, right: 50 }}>
               <Slider
                 background="#eee"
                 colour="teal"

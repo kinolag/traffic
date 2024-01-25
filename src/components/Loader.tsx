@@ -1,8 +1,15 @@
-export default function Loader() {
+type LoaderProps = {
+  specifier?: string;
+};
+
+export default function Loader({ specifier }: LoaderProps) {
   return (
-    <div style={{ color: "slategrey" }}>
-      <p>Loading data.</p>
-      <p>Please wait, this may take a few seconds...</p>
+    <div className="centeredColumn is-slategrey">
+      <div className="blinkPartial txt-c">
+        <p>Loading data{` ${specifier}`}.</p>
+        <p>Please wait, this may take a few seconds...</p>
+      </div>
+      <div className="loader mar-5"></div>
     </div>
   );
 }

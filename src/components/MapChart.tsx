@@ -212,7 +212,7 @@ export default function MapChart({ area, w = 650, h = 650 }: MapChartProps) {
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
       {!loading && geoMapData && data && (
         <>
-          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsb">{`Displaying ${data.length} traffic points in ${TOPO_MAP_DATA[area].label}.`}</p>
+          <p className="txt-c pad-5 radius-8 bg-fc0 is-teal">{`Displaying ${data.length} traffic points in ${TOPO_MAP_DATA[area].label}`}</p>
           <svg
             style={{ border: "1px solid grey", width: w, height: h }}
             /* removing width and height from here, moving to style */

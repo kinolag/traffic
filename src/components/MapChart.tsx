@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Loader from "./Loader";
 import Selector from "./Selector";
 import {
@@ -13,7 +13,6 @@ import { Topology } from "topojson-specification";
 import {
   type AvailableArea,
   type AvailableYear,
-  type SelectorOptionValue,
   YEARS,
   TOPO_MAP_DATA,
   TRAFFIC_DATA,
@@ -41,82 +40,78 @@ export default function MapChart({
     | undefined
   >();
 
-  const [selectedYear, setSelectedYear] = useState<SelectorOptionValue>(year);
+  const [selectedYear, setSelectedYear] = useState<AvailableYear>(year);
   const [selectedNode, setSelectedNode] =
     useState<d3.DSVRowString<string> | null>(null);
 
   const AdditionalInfo = () => {
-    return (
+    return selectedNode ? (
       <text className="txt-13" fill="teal" x={30} y={40}>
-        {selectedNode ? (
-          <>
-            <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
-            <tspan x={30} dy="1.5em">
-              Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
-              {(+selectedNode.Longitude).toFixed(2)}
-            </tspan>
-            <tspan x={30} dy="1.5em">
-              Direction of travel: {selectedNode.direction_of_travel}
-            </tspan>
-            <tspan x={30} dy="1.5em">
-              All motor vehicles: {selectedNode.All_motor_vehicles}
-            </tspan>
-            <tspan x={30} dy="1.5em">
-              Two wheeled motor vehicles:{" "}
-              {selectedNode.Two_wheeled_motor_vehicles}
-            </tspan>
-            <tspan x={30} dy="1.5em">
-              Pedal cycles: {selectedNode.Pedal_cycles}
-            </tspan>
-          </>
-        ) : (
-          <tspan fill="slategrey" className="txt-14">
-            Mouse over a circle for details
-          </tspan>
-        )}
+        <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
+        <tspan x={30} dy="1.5em">
+          Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
+          {(+selectedNode.Longitude).toFixed(2)}
+        </tspan>
+        <tspan x={30} dy="1.5em">
+          Direction of travel: {selectedNode.direction_of_travel}
+        </tspan>
+        <tspan x={30} dy="1.5em" fill="darkslateblue">
+          All motor vehicles: {selectedNode.All_motor_vehicles}
+        </tspan>
+        <tspan x={30} dy="1.5em" fill="darkslateblue">
+          Two wheeled motor vehicles: {selectedNode.Two_wheeled_motor_vehicles}
+        </tspan>
+        <tspan x={30} dy="1.5em" fill="darkslateblue">
+          Pedal cycles: {selectedNode.Pedal_cycles}
+        </tspan>
+      </text>
+    ) : (
+      <text className="txt-14" fill="teal" x={30} y={40}>
+        Mouse over a point for details
       </text>
     );
   };
 
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      try {
-        /* d3.csv uses d3.fetch which returns a promise */
-        const trafficData: d3.DSVRowArray<string> | undefined = await d3.csv(
-          TRAFFIC_DATA[area].trafficDataFile
-        );
+  const loadData = useCallback(async () => {
+    setLoading(true);
+    try {
+      /* d3.csv uses d3.fetch which returns a promise */
+      const trafficData: d3.DSVRowArray<string> | undefined = await d3.csv(
+        TRAFFIC_DATA[area].trafficDataFile
+      );
 
-        let topoData: Topology | undefined;
-        let geoData:
-          | FeatureCollection<Geometry, GeoJsonProperties>
-          | Feature<Geometry, GeoJsonProperties>
-          | undefined;
+      let topoData: Topology | undefined;
+      let geoData:
+        | FeatureCollection<Geometry, GeoJsonProperties>
+        | Feature<Geometry, GeoJsonProperties>
+        | undefined;
 
-        if (TOPO_MAP_DATA[area].mapDataFileType === "geoJson") {
-          geoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
-        } else {
-          topoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
-          if (!!topoData) {
-            geoData = topojson.feature(
-              topoData,
-              topoData.objects[TOPO_MAP_DATA[area].objectName]
-            );
-          }
+      if (TOPO_MAP_DATA[area].mapDataFileType === "geoJson") {
+        geoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
+      } else {
+        topoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
+        if (!!topoData) {
+          geoData = topojson.feature(
+            topoData,
+            topoData.objects[TOPO_MAP_DATA[area].objectName]
+          );
         }
-
-        Promise.all([trafficData, geoData]).then((values) => {
-          setData(values[0]);
-          setGeoMapData(values[1]);
-        });
-      } catch (e) {
-        console.log(e);
-      } finally {
-        setLoading(false);
       }
-    };
-    loadData();
+
+      Promise.all([trafficData, geoData]).then((values) => {
+        setData(values[0]);
+        setGeoMapData(values[1]);
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   }, [area]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const projection: d3.GeoProjection = d3
     .geoMercator()
@@ -163,6 +158,10 @@ export default function MapChart({
   function deselectPoint(): void {
     setSelectedNode(null);
   }
+
+  const yearsOptions = YEARS.map((v) => {
+    return { value: v, label: v };
+  }).sort((a, b) => +b.value - +a.value);
 
   return (
     <div className="centeredColumn">
@@ -227,13 +226,11 @@ export default function MapChart({
             </svg>
             <Selector
               className="absolute"
-              style={{ top: 22, left: w / 2 - 54 }}
-              optionName="Year"
-              options={YEARS.map((v) => {
-                return { value: v, label: v };
-              }).sort((a, b) => +b.value - +a.value)}
+              style={{ top: 20, left: w / 2 - 56 }}
+              labelText="Select Year"
+              options={yearsOptions}
               value={selectedYear}
-              setValue={setSelectedYear}
+              setYear={setSelectedYear}
             />
           </div>
         </>

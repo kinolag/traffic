@@ -1,4 +1,6 @@
 import {
+  type AvailableArea,
+  type AvailableYear,
   type SelectorOptionValue,
 } from "../assets/data/typesAndConstants";
 
@@ -7,39 +9,42 @@ type SelectorOptions = Array<{ value: SelectorOptionValue; label: string }>;
 type SelectorProps = {
   className?: string;
   style?: React.CSSProperties;
-  optionName: string;
+  labelText: string;
   options: SelectorOptions;
   value: SelectorOptionValue;
-  setValue: (arg0: SelectorOptionValue) => void;
+  setArea?: React.Dispatch<AvailableArea>;
+  setYear?: React.Dispatch<AvailableYear>;
 };
 
 export default function Selector({
   className,
   style,
-  optionName,
+  labelText,
   options,
   value,
-  setValue,
+  setArea,
+  setYear,
 }: SelectorProps) {
   return (
     <div className={className} style={style}>
-      <label htmlFor="options" className="pad-5 txt-14 is-teal ">
-        {optionName}
+      <label htmlFor="options" className="pad-5 txt-14 is-teal">
+        {labelText}
       </label>
       <select
-        className="mar-5 is-slategrey radius-4 space-04 shadow-ccc"
+        className="mar-3 pad-3 is-slategrey radius-4"
         name="options"
         id="options"
-        onChange={(e) => setValue(e.target.value as SelectorOptionValue)}
-        /* link value to state */
         value={value}
+        onChange={(e) => {
+          if (setArea) setArea(e.target.value as AvailableArea);
+          if (setYear) setYear(e.target.value as AvailableYear);
+        }}
       >
-        {options &&
-          options.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
       </select>
     </div>
   );

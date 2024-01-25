@@ -41,6 +41,43 @@ export default function MapChart({
     | undefined
   >();
   const [selectedYear, setSelectedYear] = useState<AvailableYear>(year);
+  const [selectedNode, setSelectedNode] =
+    useState<d3.DSVRowString<string> | null>(null);
+
+  const AdditionalInfo = () => {
+    return (
+      <text className="txt-14" fill="teal" x={30} y={40}>
+        {selectedNode ? (
+          <>
+            <tspan>
+              Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
+              {(+selectedNode.Longitude).toFixed(2)}
+            </tspan>
+            <tspan x={30} dy="1.5em">
+              Traffic Point ID: {selectedNode.Count_point_id}
+            </tspan>
+            <tspan x={30} dy="1.5em">
+              Direction of travel: {selectedNode.direction_of_travel}
+            </tspan>
+            <tspan x={30} dy="1.5em">
+              All motor vehicles: {selectedNode.All_motor_vehicles}
+            </tspan>
+            <tspan x={30} dy="1.5em">
+              Two wheeled motor vehicles:{" "}
+              {selectedNode.Two_wheeled_motor_vehicles}
+            </tspan>
+            <tspan x={30} dy="1.5em">
+              Pedal cycles: {selectedNode.Pedal_cycles}
+            </tspan>
+          </>
+        ) : (
+          <tspan fill="slategrey" className="txt-14">
+            Mouse over a circle for details
+          </tspan>
+        )}
+      </text>
+    );
+  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -136,6 +173,14 @@ export default function MapChart({
     return scaled(amount);
   };
 
+  function selectCircle(d: d3.DSVRowString<string>): void {
+    setSelectedNode(d);
+  }
+
+  function deselectCircle(): void {
+    setSelectedNode(null);
+  }
+
   return (
     <div>
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
@@ -151,6 +196,18 @@ export default function MapChart({
             version="1.1"
           >
             <g>
+              {generatedPath && (
+                <path
+                  style={{ opacity: 0.3 }}
+                  d={generatedPath}
+                  fill="#ccc"
+                  stroke="black"
+                  strokeWidth={1}
+                />
+              )}
+              <text className="txt-14" fill="teal" x={w - 110} y={40}>
+                Year: {selectedYear}
+              </text>
               {projectedCoordinates?.map(
                 (coord, i) =>
                   !!coord && (
@@ -162,23 +219,30 @@ export default function MapChart({
                       style={{
                         fill: scaleValueToColor(+data[i].All_motor_vehicles),
                         // stroke: "black",
-                        opacity: 0.8,
+                        opacity: 0.85,
+                      }}
+                      /* for devices with a mouse */
+                      onMouseOver={() => {
+                        if (dataByYear) {
+                          selectCircle(dataByYear[i]);
+                        }
+                      }}
+                      onMouseOut={() => {
+                        deselectCircle();
+                      }}
+                      /* for touch screen devices */
+                      onPointerDown={() => {
+                        if (dataByYear) {
+                          selectCircle(dataByYear[i]);
+                        }
+                      }}
+                      onPointerUp={() => {
+                        deselectCircle();
                       }}
                     />
                   )
               )}
-              {generatedPath && (
-                <path
-                  style={{ opacity: 0.3 }}
-                  d={generatedPath}
-                  fill="#ccc"
-                  stroke="black"
-                  strokeWidth={1}
-                />
-              )}
-              <text className="txt-14" fill="teal" x={w / 2 - 50} y={25}>
-                Year: {selectedYear}
-              </text>
+              <AdditionalInfo />
             </g>
           </svg>
         </>

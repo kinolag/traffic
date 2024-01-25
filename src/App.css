@@ -12,6 +12,10 @@ header {
   border: 1px dotted darkslategrey;
 }
 
+select {
+  outline: 0px;
+}
+
 /* wrappers */
 .centeredColumn {
   display: flex;
@@ -119,8 +123,16 @@ header {
   letter-spacing: 0.25rem;
 }
 
+.mar-3 {
+  margin: 3px 3px;
+}
+
 .mar-5 {
   margin: 5px 5px;
+}
+
+.pad-3 {
+  padding: 3px 3px;
 }
 
 .pad-5 {

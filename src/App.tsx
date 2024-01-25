@@ -14,8 +14,7 @@ function App() {
     <div className="centeredColumn">
       <Header />
       <main>
-        {/* <MapChart area="gb" /> */}
-        {/* <MapChart area="towerHamlets" /> */}
+        <MapChart area="towerHamlets" />
         <MapChart area="southwark" />
         <MapChart area="lewisham" />
         <MapChart area="greenwich" />

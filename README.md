@@ -1,6 +1,6 @@
 # traffic app - geospatial visualisation
 
-Built with Typescript, React and D3.
+Built with TypeScript, React and D3.
 
 The app visualises part of the information about the [road traffic statistics](https://roadtraffic.dft.gov.uk/downloads) collected in the UK over the last 23 years (2000-2022), across 45,865 manual count points.
 

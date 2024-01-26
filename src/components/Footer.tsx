@@ -30,9 +30,9 @@ export default function Footer() {
         23 years (2000-2022), across 45,865 manual count points.
       </p>
       <p>
-        <b>Developer:</b>:
+        <b>App Developer:</b>:
       </p>
-      <p className="txt-14 is-dsg">Nicola Grassini (2024)</p>
+      <p className="txt-14">Nicola Grassini (2024)</p>
     </footer>
   );
 }

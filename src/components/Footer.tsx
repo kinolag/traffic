@@ -29,6 +29,10 @@ export default function Footer() {
         : information about the road traffic statistics collected over the last
         23 years (2000-2022), across 45,865 manual count points.
       </p>
+      <p>
+        <b>Developer:</b>:
+      </p>
+      <p className="txt-14 is-dsg">Nicola Grassini (2024)</p>
     </footer>
   );
 }

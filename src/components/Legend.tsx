@@ -9,8 +9,11 @@ export default function Legend({ chartType }: LegendProps) {
         <h3 className="is-dsg">Chart Legend</h3>
         <p>
           • Elements represent the{" "}
-          <strong className="is-dsb">number of vehicles (of selected type)</strong>{" "}
-          recorded at a traffic point.
+          <strong className="is-dsb">
+            number of vehicles (per selected type)
+          </strong>{" "}
+          recorded at a traffic point{" "}
+          <strong className="is-dsb">in the selected year</strong>.
         </p>
         <p>
           • <strong className="is-dsb">Color scale</strong>: (lowest value) blue

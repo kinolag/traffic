@@ -21,6 +21,13 @@ select {
   align-items: center;
 }
 
+.spacedRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .sliderWrapper {
   border: 1px solid #ccc;
 }

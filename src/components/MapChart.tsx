@@ -136,7 +136,7 @@ export default function MapChart({
   );
 
   /* check for possible undefined */
-  const extent = d3.extent(data ?? [], (d) => +d[vehicle]);
+  const extent = d3.extent(dataByYear ?? [], (d) => +d[vehicle]);
 
   /* process colors, use d3.interpolateRdYlBu() or other method */
   const scaleValueToColor = (amount: number): string => {

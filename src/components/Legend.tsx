@@ -6,7 +6,7 @@ export default function Legend({ chartType }: LegendProps) {
   return (
     <div className="is-slategrey mar-10" style={{ marginTop: "0px" }}>
       <div className="txt-c txt-14">
-        <h3 className="is-dsg">Chart Legend:</h3>
+        <h3 className="is-dsg">Chart Legend</h3>
         <p>
           • Elements represent the{" "}
           <strong className="is-dsb">number of vehicles (of selected type)</strong>{" "}

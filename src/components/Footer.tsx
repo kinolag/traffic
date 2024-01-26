@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="w90pc mar-5 txt-c radius-8 is-slategrey">
       <p>
-        <b>Data Sources</b>:
+        <b>Data Sources</b>
       </p>
       <p className="txt-14">
         <a
@@ -30,7 +30,7 @@ export default function Footer() {
         23 years (2000-2022), across 45,865 manual count points.
       </p>
       <p>
-        <b>App Developer:</b>:
+        <b>App Developer</b>
       </p>
       <p className="txt-14">Nicola Grassini (2024)</p>
     </footer>

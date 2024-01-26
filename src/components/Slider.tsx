@@ -13,6 +13,7 @@ const DEFAULT_MAX = 100;
 const DEFAULT_VALUE = 0;
 
 type SliderProps = {
+  id?: string;
   background?: string;
   colour?: string;
   value?: number;
@@ -24,6 +25,7 @@ type SliderProps = {
 };
 
 export default function Slider({
+  id,
   background = DEFAULT_BG,
   colour = DEFAULT_COLOUR,
   value = DEFAULT_VALUE,
@@ -65,7 +67,8 @@ export default function Slider({
     if (fractionOfWidth >= 0.0 && fractionOfWidth <= 1.0) {
       const newPercent = valueToPercent(newValue);
       setSliderValue(newPercent);
-      if(setYear) setYear(percentToValue(sliderValue).toString() as AvailableYear);
+      if (setYear)
+        setYear(percentToValue(sliderValue).toString() as AvailableYear);
     }
   };
   const startInput = (e: PointerEvent<HTMLElement>): void => {
@@ -84,6 +87,7 @@ export default function Slider({
   return (
     <>
       <div
+      id={id}
         className="sliderWrapper relative"
         style={{
           background,

@@ -1,6 +1,6 @@
 # traffic - geospatial visualisation app
 
-Built with TypeScript, React and D3.
+Built with __TypeScript__, __React__, __D3__, __GeoJSON__, __TopoJson__.
 
 The app visualises part of the information about the [road traffic statistics](https://roadtraffic.dft.gov.uk/downloads) collected in the UK over the last 23 years (2000-2022), across 45,865 manual count points.
 
@@ -40,6 +40,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-

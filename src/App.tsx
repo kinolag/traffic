@@ -4,11 +4,11 @@ import { type AvailableArea, AREAS } from "./assets/data/typesAndConstants";
 import Header from "./components/Header";
 import Selector from "./components/Selector";
 import MapChart from "./components/MapChart";
+import Legend from "./components/Legend";
 
 /** handling production and development:
  * place data in /public folder
  * set PUBLIC_URL in build script
- * (or enable PUBLIC_URL in .env only at build)
  * */
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
           setArea={setSelectedArea}
         />
         <MapChart area={selectedArea} />
+        <Legend/>
       </main>
     </div>
   );

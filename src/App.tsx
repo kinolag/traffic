@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Selector from "./components/Selector";
 import MapChart from "./components/MapChart";
 import Legend from "./components/Legend";
+import Footer from "./components/Footer";
 
 /** handling production and development:
  * place data in /public folder
@@ -30,6 +31,7 @@ function App() {
         />
         <MapChart area={selectedArea} />
         <Legend/>
+        <Footer />
       </main>
     </div>
   );

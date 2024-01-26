@@ -10,9 +10,11 @@ Features:
 
 • view traffic points in selected `area`
 
-• see gradual evolution by modifying `year`
+• see gradual evolution by modifying `year` via custom slider
 
 • filter data by `vehicle type`
+
+• display an animated loader while data is being fetched
 
 The app is responsive and works on touch screen devices too.
 

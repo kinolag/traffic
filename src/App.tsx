@@ -14,10 +14,14 @@ import MapChart from "./components/MapChart";
 function App() {
   const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
   return (
-    <div className="centeredColumn">
+    <div
+      className="w100pc centeredColumn"
+      style={{ maxWidth: "960px", margin: "auto" }}
+    >
       <Header />
-      <main className="centeredColumn">
+      <main className="w100pc centeredColumn">
         <Selector
+          className="txt-12"
           style={{ marginTop: "12px" }}
           labelText="Select Area"
           options={AREAS}

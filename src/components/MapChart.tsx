@@ -160,7 +160,7 @@ export default function MapChart({
   }
 
   return (
-    <div>
+    <div className="w90pc mar-10">
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
       {!loading && geoMapData && data && (
         <>
@@ -169,7 +169,7 @@ export default function MapChart({
           <div className="relative">
             <svg
               className="radius-8"
-              style={{ border: "1px solid #ccc", width: w, height: h }}
+              style={{ width: "100%", border: "1px solid #ccc" }}
               viewBox={`0 0 ${w} ${h}`}
               xmlns="http://www.w3.org/2000/svg"
               version="1.1"
@@ -218,19 +218,24 @@ export default function MapChart({
                     )
                 )}
                 <AdditionalInfo />
-                <text className="absolute txt-14" fill="teal" x={295} y={40}>
-                  Year {selectedYear}
-                </text>
               </g>
             </svg>
-            <div className="absolute" style={{ top: 32, right: 50 }}>
+
+            <div
+              className="absolute centeredColumn"
+              style={{ top: 15, right: 25 }}
+            >
+              <div className="txt-14 is-teal" style={{ paddingBottom: "10px" }}>
+                Year {selectedYear}
+              </div>
               <Slider
+                id="year-slider"
                 background="#eee"
                 colour="teal"
                 value={+selectedYear}
                 min={+YEARS[0]}
                 max={+YEARS[YEARS.length - 1]}
-                width={220}
+                width={130}
                 height={6}
                 setYear={setSelectedYear}
               />

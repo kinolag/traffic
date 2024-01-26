@@ -9,7 +9,7 @@ export default function Loader({ specifier }: LoaderProps) {
         <p>Loading data{` ${specifier}`}.</p>
         <p>Please wait, this may take a few seconds...</p>
       </div>
-      <div className="loader mar-5"></div>
+      <div className="loader mar-10" />
     </div>
   );
 }

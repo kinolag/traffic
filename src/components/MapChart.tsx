@@ -12,7 +12,9 @@ import * as topojson from "topojson-client";
 import { Topology } from "topojson-specification";
 import {
   type AvailableArea,
+  type AvailableVehicle,
   type AvailableYear,
+  VEHICLES,
   YEARS,
   TOPO_MAP_DATA,
   TRAFFIC_DATA,
@@ -20,6 +22,7 @@ import {
 
 type MapChartProps = {
   area: AvailableArea;
+  vehicle?: AvailableVehicle;
   year?: AvailableYear;
   w?: number;
   h?: number;
@@ -27,6 +30,7 @@ type MapChartProps = {
 
 export default function MapChart({
   area,
+  vehicle = VEHICLES[0].value,
   year = YEARS[YEARS.length - 1],
   w = 650,
   h = 650,
@@ -132,7 +136,7 @@ export default function MapChart({
   );
 
   /* check for possible undefined */
-  const extent = d3.extent(data ?? [], (d) => +d.All_motor_vehicles);
+  const extent = d3.extent(data ?? [], (d) => +d[vehicle]);
 
   /* process colors, use d3.interpolateRdYlBu() or other method */
   const scaleValueToColor = (amount: number): string => {
@@ -191,9 +195,9 @@ export default function MapChart({
                         key={i}
                         cx={coord[0]}
                         cy={coord[1]}
-                        r={scaleToRadius(+data[i].All_motor_vehicles)}
+                        r={scaleToRadius(+data[i][vehicle])}
                         style={{
-                          fill: scaleValueToColor(+data[i].All_motor_vehicles),
+                          fill: scaleValueToColor(+data[i][vehicle]),
                           opacity: 0.85,
                         }}
                         /* for devices with a mouse */

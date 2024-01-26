@@ -1,5 +1,6 @@
 import {
   type AvailableArea,
+  type AvailableVehicle,
   type AvailableYear,
   type SelectorOptionValue,
 } from "../assets/data/typesAndConstants";
@@ -13,6 +14,7 @@ type SelectorProps = {
   options: SelectorOptions;
   value: SelectorOptionValue;
   setArea?: React.Dispatch<AvailableArea>;
+  setVehicle?: React.Dispatch<AvailableVehicle>;
   setYear?: React.Dispatch<AvailableYear>;
 };
 
@@ -23,6 +25,7 @@ export default function Selector({
   options,
   value,
   setArea,
+  setVehicle,
   setYear,
 }: SelectorProps) {
   return (
@@ -37,6 +40,7 @@ export default function Selector({
         value={value}
         onChange={(e) => {
           if (setArea) setArea(e.target.value as AvailableArea);
+          if (setVehicle) setVehicle(e.target.value as AvailableVehicle);
           if (setYear) setYear(e.target.value as AvailableYear);
         }}
       >

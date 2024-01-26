@@ -1,6 +1,11 @@
 import "./App.css";
 import { useState } from "react";
-import { type AvailableArea, AREAS } from "./assets/data/typesAndConstants";
+import {
+  type AvailableArea,
+  AREAS,
+  type AvailableVehicle,
+  VEHICLES,
+} from "./assets/data/typesAndConstants";
 import Header from "./components/Header";
 import Selector from "./components/Selector";
 import MapChart from "./components/MapChart";
@@ -14,6 +19,8 @@ import Footer from "./components/Footer";
 
 function App() {
   const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
+  const [selectedVehicle, setSelectedVehicle] =
+    useState<AvailableVehicle>("All_motor_vehicles");
   return (
     <div
       className="w100pc centeredColumn"
@@ -21,16 +28,24 @@ function App() {
     >
       <Header />
       <main className="w100pc centeredColumn">
-        <Selector
-          className="txt-12"
-          style={{ marginTop: "12px" }}
-          labelText="Select Area"
-          options={AREAS}
-          value={selectedArea}
-          setArea={setSelectedArea}
-        />
-        <MapChart area={selectedArea} />
-        <Legend/>
+        <div className="w90pc spacedRow" style={{ marginTop: "12px" }}>
+          <Selector
+            className="txt-12"
+            labelText="Select Area"
+            options={AREAS}
+            value={selectedArea}
+            setArea={setSelectedArea}
+          />
+          <Selector
+            className="txt-12"
+            labelText="Select Vehicle Type"
+            options={VEHICLES}
+            value={selectedVehicle}
+            setVehicle={setSelectedVehicle}
+          />
+        </div>
+        <MapChart area={selectedArea} vehicle={selectedVehicle} />
+        <Legend />
         <Footer />
       </main>
     </div>

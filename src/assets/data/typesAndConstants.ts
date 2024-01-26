@@ -30,11 +30,25 @@ export type AvailableYear =
   | "2021"
   | "2022";
 
-export type SelectorOptionValue = AvailableArea | AvailableYear;
+export type AvailableVehicle =
+  | "Pedal_cycles"
+  | "Two_wheeled_motor_vehicles"
+  | "Cars_and_taxis"
+  | "Buses_and_coaches"
+  | "LGVs"
+  | "All_HGVs"
+  | "All_motor_vehicles";
 
-export type Areas = Array<{ value: AvailableArea, label: string }>;
+export type SelectorOptionValue =
+  | AvailableArea
+  | AvailableVehicle
+  | AvailableYear;
+
+export type Areas = Array<{ value: AvailableArea; label: string }>;
 
 export type Years = Array<AvailableYear>;
+
+export type Vehicles = Array<{ value: AvailableVehicle; label: string }>;
 
 export const AREAS: Areas = [
   { value: "greenwich", label: "Greenwich" },
@@ -67,6 +81,16 @@ export const YEARS: Years = [
   "2020",
   "2021",
   "2022",
+];
+
+export const VEHICLES: Vehicles = [
+  { value: "Pedal_cycles", label: "Pedal Cycles" },
+  { value: "Two_wheeled_motor_vehicles", label: "Two wheeled Motor Vehicles" },
+  { value: "Cars_and_taxis", label: "Cars and Taxis" },
+  { value: "Buses_and_coaches", label: "Buses and Coaches" },
+  { value: "LGVs", label: "LGVs" },
+  { value: "All_HGVs", label: "All HGVs" },
+  { value: "All_motor_vehicles", label: "All Motor Vehicles" },
 ];
 
 type MapDataFileType = "geoJson" | "topoJson";

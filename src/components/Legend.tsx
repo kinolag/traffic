@@ -13,8 +13,8 @@ export default function Legend({ chartType }: LegendProps) {
           recorded at a traffic point.
         </p>
         <p>
-          • <strong className="is-dsb">Color scale</strong>: (Lowest value) blue
-          - green - yellow - orange - red (Highest value).
+          • <strong className="is-dsb">Color scale</strong>: (lowest value) blue
+          - green - yellow - orange - red (highest value).
         </p>
         <p>
           • <strong className="is-dsb">Dimensions</strong>: a larger size

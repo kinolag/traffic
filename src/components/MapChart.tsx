@@ -166,9 +166,9 @@ export default function MapChart({
   return (
     <div className="w90pc mar-10">
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
-      {!loading && geoMapData && data && (
+      {!loading && geoMapData && dataByYear && (
         <>
-          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear?.length} traffic points in ${TOPO_MAP_DATA[area].label}`}</p>
+          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[area].label}`}</p>
           {/* for Selector positioning */}
           <div className="relative">
             <svg
@@ -195,25 +195,21 @@ export default function MapChart({
                         key={i}
                         cx={coord[0]}
                         cy={coord[1]}
-                        r={scaleToRadius(+data[i][vehicle])}
+                        r={scaleToRadius(+dataByYear[i][vehicle])}
                         style={{
-                          fill: scaleValueToColor(+data[i][vehicle]),
+                          fill: scaleValueToColor(+dataByYear[i][vehicle]),
                           opacity: 0.85,
                         }}
                         /* for devices with a mouse */
                         onMouseOver={() => {
-                          if (dataByYear) {
-                            selectPoint(dataByYear[i]);
-                          }
+                          selectPoint(dataByYear[i]);
                         }}
                         onMouseOut={() => {
                           deselectPoint();
                         }}
                         /* for touch screen devices */
                         onPointerDown={() => {
-                          if (dataByYear) {
-                            selectPoint(dataByYear[i]);
-                          }
+                          selectPoint(dataByYear[i]);
                         }}
                         onPointerUp={() => {
                           deselectPoint();

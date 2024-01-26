@@ -8,8 +8,8 @@ export default function Legend({ chartType }: LegendProps) {
       <div className="txt-c txt-14">
         <h3>Chart Legend:</h3>
         <p>
-          • Elements represent{" "}
-          <strong className="is-dsb">value of total motor vehicles</strong>{" "}
+          • Elements represent the{" "}
+          <strong className="is-dsb">number of total motor vehicles</strong>{" "}
           recorded at a traffic point.
         </p>
         <p>

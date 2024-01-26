@@ -1,4 +1,4 @@
-# traffic app - geospatial visualisation
+# traffic - geospatial visualisation app
 
 Built with TypeScript, React and D3.
 

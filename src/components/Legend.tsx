@@ -4,7 +4,7 @@ type LegendProps = {
 
 export default function Legend({ chartType }: LegendProps) {
   return (
-    <div className="is-slategrey mar-10" style={{ marginTop: "0px" }}>
+    <div className="w90pc is-slategrey mar-10" style={{ marginTop: "0px" }}>
       <div className="txt-c txt-14">
         <h3 className="is-dsg">Chart Legend</h3>
         <p>
@@ -16,12 +16,12 @@ export default function Legend({ chartType }: LegendProps) {
           <strong className="is-dsb">in the selected year</strong>.
         </p>
         <p>
-          • <strong className="is-dsb">Color scale</strong>: (lowest value) blue
-          - green - yellow - orange - red (highest value).
-        </p>
-        <p>
           • <strong className="is-dsb">Dimensions</strong>: a larger size
           represents a higher value (linear scale).
+        </p>
+        <p>
+          • <strong className="is-dsb">Color scale</strong>: (lowest value) blue
+          - yellow - red (highest value).
         </p>
       </div>
     </div>

@@ -21,33 +21,40 @@ function App() {
   const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
   const [selectedVehicle, setSelectedVehicle] =
     useState<AvailableVehicle>("All_motor_vehicles");
+
+  const FiltersRow = () => {
+    return (
+      <div className="w90pc spacedRow" style={{ marginTop: "12px" }}>
+        <Selector
+          className="txt-12"
+          labelText="Select Area"
+          options={AREAS}
+          value={selectedArea}
+          setArea={setSelectedArea}
+        />
+        <Selector
+          className="txt-12"
+          labelText="Select Vehicle Type"
+          options={VEHICLES}
+          value={selectedVehicle}
+          setVehicle={setSelectedVehicle}
+        />
+      </div>
+    );
+  };
+
   return (
     <div
-      className="w100pc centeredColumn"
+      className="centeredColumn"
       style={{ maxWidth: "960px", margin: "auto" }}
     >
       <Header />
-      <main className="w100pc centeredColumn">
-        <div className="w90pc spacedRow" style={{ marginTop: "12px" }}>
-          <Selector
-            className="txt-12"
-            labelText="Select Area"
-            options={AREAS}
-            value={selectedArea}
-            setArea={setSelectedArea}
-          />
-          <Selector
-            className="txt-12"
-            labelText="Select Vehicle Type"
-            options={VEHICLES}
-            value={selectedVehicle}
-            setVehicle={setSelectedVehicle}
-          />
-        </div>
+      <main className="centeredColumn">
+        <FiltersRow />
         <MapChart area={selectedArea} vehicle={selectedVehicle} />
         <Legend />
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

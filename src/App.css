@@ -5,7 +5,8 @@ body {
   letter-spacing: 0.04rem;
 }
 
-header, footer {
+header,
+footer {
   border: 1px dotted darkslategrey;
 }
 

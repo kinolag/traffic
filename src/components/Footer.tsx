@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w90pc mar-5 txt-c radius-8 is-slategrey">
+    <footer className="w100pc mar-10 txt-c radius-8 is-slategrey">
       <p>
         <b>Data Sources</b>
       </p>

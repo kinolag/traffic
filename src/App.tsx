@@ -24,7 +24,7 @@ function App() {
 
   const FiltersRow = () => {
     return (
-      <div className="w90pc spacedRow" style={{ marginTop: "12px" }}>
+      <div className="w100pc spacedRow" style={{ marginTop: "12px" }}>
         <Selector
           className="txt-12"
           labelText="Select Area"
@@ -45,11 +45,11 @@ function App() {
 
   return (
     <div
-      className="centeredColumn"
+      className="centeredColumn w90pc"
       style={{ maxWidth: "960px", margin: "auto" }}
     >
       <Header />
-      <main className="centeredColumn">
+      <main className="w100pc">
         <FiltersRow />
         <MapChart area={selectedArea} vehicle={selectedVehicle} />
         <Legend />

@@ -4,8 +4,7 @@ type LegendProps = {
 
 export default function Legend({ chartType }: LegendProps) {
   return (
-    <div className="w90pc is-slategrey mar-10" style={{ marginTop: "0px" }}>
-      <div className="txt-c txt-14">
+    <div className="pad-5 txt-c txt-14 is-slategrey">
         <h3 className="is-dsg">Chart Legend</h3>
         <p>
           • <strong className="is-dsg">Parameters</strong>: Elements represent
@@ -25,7 +24,6 @@ export default function Legend({ chartType }: LegendProps) {
           • <strong className="is-dsg">Color scale</strong>: Blue
           - Yellow - Red (lowest to highest value).
         </p>
-      </div>
     </div>
   );
 }

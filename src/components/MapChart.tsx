@@ -164,7 +164,7 @@ export default function MapChart({
   }
 
   return (
-    <div className="w90pc mar-10">
+    <div className="w100pc">
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
       {!loading && geoMapData && dataByYear && (
         <>

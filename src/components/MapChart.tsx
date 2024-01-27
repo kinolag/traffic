@@ -138,13 +138,13 @@ export default function MapChart({
   /* check for possible undefined */
   const extent = d3.extent(dataByYear ?? [], (d) => +d[vehicle]);
 
-  /* process colors, use d3.interpolateRdYlBu() or other method */
+  /* scale to color, use d3.interpolateRdYlBu() or interpolateSpectral() */
   const scaleValueToColor = (amount: number): string => {
     const scaled = d3.scaleLinear(
       extent.map((v) => (v ? +v : 0)),
       [1, 0] // get blue for lowest, red for highest
     );
-    return d3.interpolateSpectral(scaled(amount));
+    return d3.interpolateRdYlBu(scaled(amount));
   };
 
   const scaleToRadius = (amount: number): number => {

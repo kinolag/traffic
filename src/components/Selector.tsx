@@ -29,7 +29,7 @@ export default function Selector({
   setYear,
 }: SelectorProps) {
   return (
-    <div className={className} style={style}>
+    <div className={`row-col ${className}`} style={style}>
       <label htmlFor="options" className="pad-5 txt-14 is-teal">
         {labelText}
       </label>

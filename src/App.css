@@ -22,6 +22,11 @@ select {
   align-items: center;
 }
 
+.row-col {
+  display: flex;
+  flex-direction: row;
+}
+
 .spacedRow {
   display: flex;
   flex-direction: row;
@@ -296,6 +301,10 @@ select {
 }
 
 @media screen and (max-width: 600px) {
+  .row-col {
+    flex-direction: column;
+  }
+
   .sliderWrapper {
     width: 130px;
   }

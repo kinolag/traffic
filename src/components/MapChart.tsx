@@ -71,7 +71,7 @@ export default function MapChart({
       </text>
     ) : (
       <text className="txt-14" fill="teal" x={30} y={40}>
-        Mouse over a point for details
+        Mouse over a map point for details
       </text>
     );
   };
@@ -235,7 +235,6 @@ export default function MapChart({
                 value={+selectedYear}
                 min={+YEARS[0]}
                 max={+YEARS[YEARS.length - 1]}
-                width={130}
                 height={6}
                 setYear={setSelectedYear}
               />

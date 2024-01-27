@@ -30,6 +30,7 @@ select {
 
 .sliderWrapper {
   border: 1px solid #ccc;
+  width: 260px;
 }
 
 .sliderTrack {
@@ -291,4 +292,10 @@ select {
 .a3:hover {
   text-decoration: none;
   color: red;
+}
+
+@media screen and (max-width: 600px) {
+  .sliderWrapper {
+    width: 130px;
+  }
 }

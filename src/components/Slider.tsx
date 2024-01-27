@@ -4,8 +4,8 @@ import { AvailableYear } from "../assets/data/typesAndConstants";
 /* element UI */
 const DEFAULT_COLOUR = "rgba(255,0,0,1)";
 const DEFAULT_BG = "rgba(255,0,0,0.33)";
-const DEFAULT_WIDTH = 180;
 const MIN_HEIGHT = 6;
+
 /* range */
 const DEFAULT_MIN = 0;
 const DEFAULT_MAX = 100;
@@ -31,7 +31,7 @@ export default function Slider({
   value = DEFAULT_VALUE,
   min = DEFAULT_MIN,
   max = DEFAULT_MAX,
-  width = DEFAULT_WIDTH,
+  width,
   height = MIN_HEIGHT,
   setYear,
 }: SliderProps) {
@@ -87,12 +87,13 @@ export default function Slider({
   return (
     <>
       <div
-      id={id}
+        id={id}
         className="sliderWrapper relative"
         style={{
           background,
           height,
-          width,
+          // DEFAULT_WIDTH from CSS (responsive)
+          width: width ?? undefined,
           minHeight: `${MIN_HEIGHT}px`,
           borderRadius: `${height * 0.5}px`,
           /* fix pointerMove issue on touch screen devices */

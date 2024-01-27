@@ -8,22 +8,22 @@ export default function Legend({ chartType }: LegendProps) {
       <div className="txt-c txt-14">
         <h3 className="is-dsg">Chart Legend</h3>
         <p>
-          • <strong className="is-dsb">Parameters</strong>: Elements represent
-          the <strong className="is-dsb">number of vehicles</strong> recorded at
+          • <strong className="is-dsg">Parameters</strong>: Elements represent
+          the <strong>number of vehicles</strong> recorded at
           a traffic point{" "}
-          <strong className="is-dsb">
+          <strong>
             {" "}
             in the selected year and vehicle type
           </strong>
           .
         </p>
         <p>
-          • <strong className="is-dsb">Dimensions</strong>: a larger size
+          • <strong className="is-dsg">Dimensions</strong>: a larger size
           represents a higher value (linear scale).
         </p>
         <p>
-          • <strong className="is-dsb">Color scale</strong>: (lowest value) Blue
-          - Yellow - Red (highest value).
+          • <strong className="is-dsg">Color scale</strong>: Blue
+          - Yellow - Red (lowest to highest value).
         </p>
       </div>
     </div>

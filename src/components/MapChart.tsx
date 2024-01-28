@@ -48,34 +48,6 @@ export default function MapChart({
   const [selectedNode, setSelectedNode] =
     useState<d3.DSVRowString<string> | null>(null);
 
-  const AdditionalInfo = () => {
-    return selectedNode ? (
-      <text className="txt-13" fill="teal" x={30} y={40}>
-        <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
-        <tspan x={30} dy="1.5em">
-          Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
-          {(+selectedNode.Longitude).toFixed(2)}
-        </tspan>
-        <tspan x={30} dy="1.5em">
-          Direction of travel: {selectedNode.direction_of_travel}
-        </tspan>
-        <tspan x={30} dy="1.5em" fill="darkslateblue">
-          All motor vehicles: {selectedNode.All_motor_vehicles}
-        </tspan>
-        <tspan x={30} dy="1.5em" fill="darkslateblue">
-          Two wheeled motor vehicles: {selectedNode.Two_wheeled_motor_vehicles}
-        </tspan>
-        <tspan x={30} dy="1.5em" fill="darkslateblue">
-          Pedal cycles: {selectedNode.Pedal_cycles}
-        </tspan>
-      </text>
-    ) : (
-      <text className="txt-14" fill="teal" x={30} y={40}>
-        Mouse over a map point for details
-      </text>
-    );
-  };
-
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
@@ -163,6 +135,34 @@ export default function MapChart({
     setSelectedNode(null);
   }
 
+  const InfoOverlay = () => {
+    return selectedNode ? (
+      <text className="txt-13" fill="teal" x={30} y={40}>
+        <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
+        <tspan x={30} dy="1.5em">
+          Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
+          {(+selectedNode.Longitude).toFixed(2)}
+        </tspan>
+        <tspan x={30} dy="1.5em">
+          Direction of travel: {selectedNode.direction_of_travel}
+        </tspan>
+        <tspan x={30} dy="1.5em" fill="darkslateblue">
+          All motor vehicles: {selectedNode.All_motor_vehicles}
+        </tspan>
+        <tspan x={30} dy="1.5em" fill="darkslateblue">
+          Two wheeled motor vehicles: {selectedNode.Two_wheeled_motor_vehicles}
+        </tspan>
+        <tspan x={30} dy="1.5em" fill="darkslateblue">
+          Pedal cycles: {selectedNode.Pedal_cycles}
+        </tspan>
+      </text>
+    ) : (
+      <text className="txt-14" fill="teal" x={30} y={40}>
+        Mouse over a map point for details
+      </text>
+    );
+  };
+
   return (
     <div className="w100pc">
       {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
@@ -217,7 +217,7 @@ export default function MapChart({
                       />
                     )
                 )}
-                <AdditionalInfo />
+                <InfoOverlay />
               </g>
             </svg>
 

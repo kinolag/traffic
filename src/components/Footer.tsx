@@ -26,8 +26,8 @@ export default function Footer() {
         >
           UK Road Traffic Statistics
         </a>
-        : information about the road traffic statistics collected over the last
-        23 years (2000-2022), across 45,865 manual count points.
+        : information collected over the last 23 years (2000-2022), across
+        45,865 manual count points.
       </p>
       <p>
         <b>App Developer</b>

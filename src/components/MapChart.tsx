@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Dispatch } from "react";
 import Loader from "./Loader";
 import Slider from "./Slider";
 import {
@@ -19,6 +19,41 @@ import {
   TOPO_MAP_DATA,
   TRAFFIC_DATA,
 } from "../assets/data/typesAndConstants";
+
+const YearSlider = ({
+  selectedYear,
+  setSelectedYear,
+}: {
+  selectedYear: AvailableYear;
+  setSelectedYear: Dispatch<AvailableYear>;
+}) => {
+  return (
+    <div
+      className="w100pc spacedRow"
+      style={{
+        justifyContent: "center",
+        marginBottom: "10px",
+      }}
+    >
+      <div className="txt-14 is-teal" style={{ paddingRight: "10px" }}>
+        Year
+      </div>
+      <Slider
+        id="year-slider"
+        background="#eee"
+        colour="teal"
+        value={+selectedYear}
+        min={+YEARS[0]}
+        max={+YEARS[YEARS.length - 1]}
+        height={6}
+        setYear={setSelectedYear}
+      />
+            <div className="txt-14 is-teal" style={{ paddingLeft: "15px" }}>
+        {selectedYear}
+      </div>
+    </div>
+  );
+};
 
 type MapChartProps = {
   area: AvailableArea;
@@ -169,7 +204,7 @@ export default function MapChart({
       {!loading && geoMapData && dataByYear && (
         <>
           <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[area].label}`}</p>
-          {/* for Selector positioning */}
+          <YearSlider selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
           <div className="relative">
             <svg
               className="radius-8"
@@ -220,25 +255,6 @@ export default function MapChart({
                 <InfoOverlay />
               </g>
             </svg>
-
-            <div
-              className="absolute centeredColumn"
-              style={{ top: 15, right: 25 }}
-            >
-              <div className="txt-14 is-teal" style={{ paddingBottom: "10px" }}>
-                Year {selectedYear}
-              </div>
-              <Slider
-                id="year-slider"
-                background="#eee"
-                colour="teal"
-                value={+selectedYear}
-                min={+YEARS[0]}
-                max={+YEARS[YEARS.length - 1]}
-                height={6}
-                setYear={setSelectedYear}
-              />
-            </div>
           </div>
         </>
       )}

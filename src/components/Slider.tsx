@@ -1,4 +1,10 @@
-import { useState, Dispatch, PointerEvent } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  Dispatch,
+  PointerEvent,
+} from "react";
 import { AvailableYear } from "../assets/data/typesAndConstants";
 
 /* element UI */
@@ -41,7 +47,12 @@ export default function Slider({
   const initialValue = value > max ? max : value < min ? min : value;
 
   const valueToPercent = (value: number) => ((value - min) / range) * 100;
-  const percentToValue = (percent: number) => (percent * range) / 100 + min;
+  const percentToValue = useCallback(
+    (percent: number) => {
+      return (percent * range) / 100 + min;
+    },
+    [min, range]
+  );
 
   const [inputting, setInputting] = useState(false);
   const [sliderValue, setSliderValue] = useState(valueToPercent(initialValue));
@@ -68,9 +79,6 @@ export default function Slider({
       const newPercent = valueToPercent(newValue);
       setSliderValue(newPercent);
     }
-    /* update year state in all cases */
-    if (setYear)
-      setYear(percentToValue(sliderValue).toString() as AvailableYear);
   };
   const startInput = (e: PointerEvent<HTMLElement>): void => {
     const target = e.target as Element;
@@ -84,6 +92,16 @@ export default function Slider({
     target.releasePointerCapture(e.pointerId);
     setInputting(false);
   };
+
+  useEffect(() => {
+    const updateYear = () => {
+      if (setYear) {
+        const newYear = percentToValue(sliderValue).toString();
+        setYear(newYear as AvailableYear);
+      }
+    };
+    updateYear();
+  }, [percentToValue, setYear, sliderValue]);
 
   return (
     <>

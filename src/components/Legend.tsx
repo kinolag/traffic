@@ -12,7 +12,7 @@ export default function Legend({ chartType }: LegendProps) {
           a traffic point{" "}
           <strong>
             {" "}
-            in the selected year and vehicle type
+            in the selected year, per vehicle type
           </strong>
           .
         </p>

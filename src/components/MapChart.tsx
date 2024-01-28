@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useState, useEffect, useCallback, Dispatch } from "react";
 import Loader from "./Loader";
+import Selector from "./Selector";
 import Slider from "./Slider";
 import {
   Feature,
@@ -14,11 +15,41 @@ import {
   type AvailableArea,
   type AvailableVehicle,
   type AvailableYear,
+  AREAS,
   VEHICLES,
   YEARS,
   TOPO_MAP_DATA,
   TRAFFIC_DATA,
 } from "../assets/data/typesAndConstants";
+
+const FiltersRow = ({
+  selectedArea,
+  setSelectedArea,
+  selectedVehicle,
+  setSelectedVehicle,
+}: {
+  selectedArea: AvailableArea;
+  setSelectedArea: Dispatch<AvailableArea>;
+  selectedVehicle: AvailableVehicle;
+  setSelectedVehicle: Dispatch<AvailableVehicle>;
+}) => (
+  <div className="w100pc spacedRow" style={{ marginTop: "12px" }}>
+    <Selector
+      className="txt-12"
+      labelText="Select Area"
+      options={AREAS}
+      value={selectedArea}
+      setArea={setSelectedArea}
+    />
+    <Selector
+      className="txt-12"
+      labelText="Select Vehicle Type"
+      options={VEHICLES}
+      value={selectedVehicle}
+      setVehicle={setSelectedVehicle}
+    />
+  </div>
+);
 
 const YearSlider = ({
   selectedYear,
@@ -36,7 +67,7 @@ const YearSlider = ({
       }}
     >
       <div className="txt-14 is-teal" style={{ paddingRight: "10px" }}>
-        Year
+        Select Year
       </div>
       <Slider
         id="year-slider"
@@ -48,7 +79,7 @@ const YearSlider = ({
         height={6}
         setYear={setSelectedYear}
       />
-            <div className="txt-14 is-teal" style={{ paddingLeft: "15px" }}>
+      <div className="txt-14 is-teal" style={{ paddingLeft: "15px" }}>
         {selectedYear}
       </div>
     </div>
@@ -56,20 +87,11 @@ const YearSlider = ({
 };
 
 type MapChartProps = {
-  area: AvailableArea;
-  vehicle?: AvailableVehicle;
-  year?: AvailableYear;
   w?: number;
   h?: number;
 };
 
-export default function MapChart({
-  area,
-  vehicle = VEHICLES[0].value,
-  year = YEARS[YEARS.length - 1],
-  w = 650,
-  h = 650,
-}: MapChartProps) {
+export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [data, setData] = useState<d3.DSVRowArray<string>>();
@@ -79,7 +101,13 @@ export default function MapChart({
     | undefined
   >();
 
-  const [selectedYear, setSelectedYear] = useState<AvailableYear>(year);
+  const [selectedArea, setSelectedArea] = useState<AvailableArea>("greenwich");
+  const [selectedVehicle, setSelectedVehicle] = useState<AvailableVehicle>(
+    VEHICLES[0].value
+  );
+  const [selectedYear, setSelectedYear] = useState<AvailableYear>(
+    YEARS[YEARS.length - 1]
+  );
   const [selectedNode, setSelectedNode] =
     useState<d3.DSVRowString<string> | null>(null);
 
@@ -88,7 +116,7 @@ export default function MapChart({
     try {
       /* d3.csv uses d3.fetch which returns a promise */
       const trafficData: d3.DSVRowArray<string> | undefined = await d3.csv(
-        TRAFFIC_DATA[area].trafficDataFile
+        TRAFFIC_DATA[selectedArea].trafficDataFile
       );
 
       let topoData: Topology | undefined;
@@ -97,14 +125,14 @@ export default function MapChart({
         | Feature<Geometry, GeoJsonProperties>
         | undefined;
 
-      if (TOPO_MAP_DATA[area].mapDataFileType === "geoJson") {
-        geoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
+      if (TOPO_MAP_DATA[selectedArea].mapDataFileType === "geoJson") {
+        geoData = await d3.json(TOPO_MAP_DATA[selectedArea].mapDataFile);
       } else {
-        topoData = await d3.json(TOPO_MAP_DATA[area].mapDataFile);
+        topoData = await d3.json(TOPO_MAP_DATA[selectedArea].mapDataFile);
         if (!!topoData) {
           geoData = topojson.feature(
             topoData,
-            topoData.objects[TOPO_MAP_DATA[area].objectName]
+            topoData.objects[TOPO_MAP_DATA[selectedArea].objectName]
           );
         }
       }
@@ -118,7 +146,7 @@ export default function MapChart({
     } finally {
       setLoading(false);
     }
-  }, [area]);
+  }, [selectedArea]);
 
   useEffect(() => {
     loadData();
@@ -126,9 +154,9 @@ export default function MapChart({
 
   const projection: d3.GeoProjection = d3
     .geoMercator()
-    .center(TOPO_MAP_DATA[area].center)
+    .center(TOPO_MAP_DATA[selectedArea].center)
     .translate([w / 2, h / 2])
-    .scale(TOPO_MAP_DATA[area].scale);
+    .scale(TOPO_MAP_DATA[selectedArea].scale);
 
   // any added here as cannot fix d3/ts error
   const geoGenerator: any = d3.geoPath().projection(projection);
@@ -143,7 +171,7 @@ export default function MapChart({
   );
 
   /* check for possible undefined */
-  const extent = d3.extent(dataByYear ?? [], (d) => +d[vehicle]);
+  const extent = d3.extent(dataByYear ?? [], (d) => +d[selectedVehicle]);
 
   /* scale to color, use d3.interpolateRdYlBu() or interpolateSpectral() */
   const scaleValueToColor = (amount: number): string => {
@@ -200,11 +228,22 @@ export default function MapChart({
 
   return (
     <div className="w100pc">
-      {loading && <Loader specifier={` for ${TOPO_MAP_DATA[area].label}`} />}
+      {loading && (
+        <Loader specifier={` for ${TOPO_MAP_DATA[selectedArea].label}`} />
+      )}
       {!loading && geoMapData && dataByYear && (
         <>
-          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[area].label}`}</p>
-          <YearSlider selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
+          <FiltersRow
+            selectedArea={selectedArea}
+            setSelectedArea={setSelectedArea}
+            selectedVehicle={selectedVehicle}
+            setSelectedVehicle={setSelectedVehicle}
+          />
+          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[selectedArea].label}`}</p>
+          <YearSlider
+            selectedYear={selectedYear}
+            setSelectedYear={setSelectedYear}
+          />
           <div className="relative">
             <svg
               className="radius-8"
@@ -230,9 +269,11 @@ export default function MapChart({
                         key={i}
                         cx={coord[0]}
                         cy={coord[1]}
-                        r={scaleToRadius(+dataByYear[i][vehicle])}
+                        r={scaleToRadius(+dataByYear[i][selectedVehicle])}
                         style={{
-                          fill: scaleValueToColor(+dataByYear[i][vehicle]),
+                          fill: scaleValueToColor(
+                            +dataByYear[i][selectedVehicle]
+                          ),
                           opacity: 0.85,
                         }}
                         /* for devices with a mouse */

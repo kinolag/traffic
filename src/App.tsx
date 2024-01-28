@@ -1,13 +1,5 @@
 import "./App.css";
-import { useState } from "react";
-import {
-  type AvailableArea,
-  AREAS,
-  type AvailableVehicle,
-  VEHICLES,
-} from "./assets/data/typesAndConstants";
 import Header from "./components/Header";
-import Selector from "./components/Selector";
 import MapChart from "./components/MapChart";
 import Legend from "./components/Legend";
 import Footer from "./components/Footer";
@@ -18,31 +10,6 @@ import Footer from "./components/Footer";
  * */
 
 function App() {
-  const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
-  const [selectedVehicle, setSelectedVehicle] =
-    useState<AvailableVehicle>("All_motor_vehicles");
-
-  const FiltersRow = () => {
-    return (
-      <div className="w100pc spacedRow" style={{ marginTop: "12px" }}>
-        <Selector
-          className="txt-12"
-          labelText="Select Area"
-          options={AREAS}
-          value={selectedArea}
-          setArea={setSelectedArea}
-        />
-        <Selector
-          className="txt-12"
-          labelText="Select Vehicle Type"
-          options={VEHICLES}
-          value={selectedVehicle}
-          setVehicle={setSelectedVehicle}
-        />
-      </div>
-    );
-  };
-
   return (
     <div
       className="centeredColumn w90pc"
@@ -50,8 +17,7 @@ function App() {
     >
       <Header />
       <main className="w100pc">
-        <FiltersRow />
-        <MapChart area={selectedArea} vehicle={selectedVehicle} />
+        <MapChart />
         <Legend />
       </main>
       <Footer />

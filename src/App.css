@@ -41,7 +41,7 @@ select {
 
 .sliderWrapper {
   border: 1px solid #ccc;
-  width: 260px;
+  width: 30%;
 }
 
 .sliderTrack {
@@ -327,6 +327,6 @@ select {
   }
 
   .sliderWrapper {
-    width: 130px;
+    width: 160px;
   }
 }

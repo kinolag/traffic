@@ -35,7 +35,7 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
     | undefined
   >();
 
-  const [selectedArea, setSelectedArea] = useState<AvailableArea>("greenwich");
+  const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
   const [selectedVehicle, setSelectedVehicle] = useState<AvailableVehicle>(
     VEHICLES[0].value
   );

@@ -67,9 +67,10 @@ export default function Slider({
     if (fractionOfWidth >= 0.0 && fractionOfWidth <= 1.0) {
       const newPercent = valueToPercent(newValue);
       setSliderValue(newPercent);
-      if (setYear)
-        setYear(percentToValue(sliderValue).toString() as AvailableYear);
     }
+    /* update year state in all cases */
+    if (setYear)
+      setYear(percentToValue(sliderValue).toString() as AvailableYear);
   };
   const startInput = (e: PointerEvent<HTMLElement>): void => {
     const target = e.target as Element;

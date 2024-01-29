@@ -101,7 +101,10 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
 
   const generatedPath: string = geoGenerator(geoMapData);
 
-  const dataByYear = data?.filter((d) => d.Year === selectedYear);
+  const dataByYear = data
+    ?.filter((d) => d.Year === selectedYear)
+    /* sort by descending value/size to reduce occlusion */
+    .sort((a, b) => +b[selectedVehicle] - +a[selectedVehicle]);
 
   /* scale data coordinates to projection */
   const projectedCoordinates = dataByYear?.map((d) =>
@@ -211,13 +214,15 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
                         cy={coord[1]}
                         r={scaleToRadius(
                           +dataByYear[i][selectedVehicle],
-                          [2, 14]
+                          [2, 16]
                         )}
                         style={{
                           fill: scaleValueToColor(
                             +dataByYear[i][selectedVehicle]
                           ),
-                          opacity: 0.85,
+                          fillOpacity: 0.85,
+                          stroke: "#bbb",
+                          strokeWidth: ".5px",
                         }}
                         /* for devices with a mouse */
                         onMouseOver={() => {

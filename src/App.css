@@ -113,6 +113,10 @@ select {
   text-align: right;
 }
 
+.txt-22 {
+  font-size: 22px;
+}
+
 .txt-18 {
   font-size: 18px;
 }
@@ -133,7 +137,8 @@ select {
   font-size: 13px;
 }
 
-.txt-12 {
+.txt-12,
+.txt-overlay {
   font-size: 12px;
 }
 
@@ -328,5 +333,9 @@ select {
 
   .sliderWrapper {
     width: 160px;
+  }
+
+  .txt-overlay {
+    font-size: 16px;
   }
 }

@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useState, useEffect, useCallback } from "react";
 import Loader from "./Loader";
-import {FiltersRow, YearSlider} from "./Filters";
+import { FiltersRow, YearSlider } from "./Filters";
 import {
   Feature,
   FeatureCollection,
@@ -116,10 +116,10 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
     return d3.interpolateRdYlBu(scaled(amount));
   };
 
-  const scaleToRadius = (amount: number): number => {
+  const scaleToRadius = (amount: number, range: [number, number]): number => {
     const scaled = d3.scaleLinear(
-      extent.map((v) => (v ? +v : 0)),
-      [2, 14] // may vary: [0, 1] [1, 14] [2, 16]
+      extent.map((v) => (v ? v : 0)),
+      range // may vary e.g. [0, 1] [2, 14] [2, 16]
     );
     return scaled(amount);
   };
@@ -180,11 +180,11 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
           />
           <div className="relative">
             <svg
-              className="radius-8"
-              style={{ width: "100%", border: "1px solid #ccc" }}
-              viewBox={`0 0 ${w} ${h}`}
               xmlns="http://www.w3.org/2000/svg"
               version="1.1"
+              className="border-c radius-8"
+              style={{ width: "100%" }}
+              viewBox={`0 0 ${w} ${h}`}
             >
               <g>
                 {generatedPath && (
@@ -203,7 +203,10 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
                         key={i}
                         cx={coord[0]}
                         cy={coord[1]}
-                        r={scaleToRadius(+dataByYear[i][selectedVehicle])}
+                        r={scaleToRadius(
+                          +dataByYear[i][selectedVehicle],
+                          [2, 14]
+                        )}
                         style={{
                           fill: scaleValueToColor(
                             +dataByYear[i][selectedVehicle]

@@ -166,6 +166,10 @@ select {
   letter-spacing: 0.25rem;
 }
 
+.line-plus {
+  line-height: 1.5em;
+}
+
 .mar-3 {
   margin: 3px 3px;
 }

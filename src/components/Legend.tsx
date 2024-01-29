@@ -29,10 +29,10 @@ export default function Legend({ chartType }: LegendProps) {
       >
         <span style={{ paddingRight: "10px" }}>Lowest</span>
         <img
+          className="flip-horizontal"
           src={interpolateRdYlBu}
           width="50%"
           height="5px"
-          style={{ transform: "scaleX(-1)" }}
           alt="RYB color scale"
         />
         <span style={{ paddingLeft: "10px" }}>Highest</span>

@@ -101,6 +101,10 @@ select {
   position: absolute;
 }
 
+.flip-horizontal {
+  transform: scaleX(-1);
+}
+
 .txt-l {
   text-align: left;
 }

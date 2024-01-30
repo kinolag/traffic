@@ -278,6 +278,23 @@ select {
   color: teal;
 }
 
+.is-blue {
+  color: #252c8d;
+}
+
+#grad {
+  background-image: linear-gradient(to right, #252c8d, #f9f8c7, #950015);
+}
+
+#gradient-text {
+  background-image: linear-gradient(to right, #252c8d, #f9f8c7, #950015);
+  color: transparent;
+  text-align: center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .w100pc {
   width: 100%;
 }

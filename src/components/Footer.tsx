@@ -29,7 +29,7 @@ export default function Footer() {
         : information collected over the last 23 years (2000-2022), across
         45,865 manual count points.
       </p>
-      <h4>App Development</h4>
+      <h4><span id="gradient-text">App Development</span></h4>
       <p className="txt-14 line-plus">
         Built using TS, React and D3
         <br />

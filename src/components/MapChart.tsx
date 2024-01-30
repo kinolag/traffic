@@ -59,10 +59,7 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
       );
 
       let topoData: Topology | undefined;
-      let geoData:
-        | FeatureCollection<Geometry, GeoJsonProperties>
-        | Feature<Geometry, GeoJsonProperties>
-        | undefined;
+      let geoData: GeoJsonMapData;
 
       if (TOPO_MAP_DATA[selectedArea].mapDataFileType === "geoJson") {
         geoData = await d3.json(TOPO_MAP_DATA[selectedArea].mapDataFile);

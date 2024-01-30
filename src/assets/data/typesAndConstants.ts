@@ -1,5 +1,7 @@
 export type AvailableArea =
   | "gb"
+  | "brighton"
+  | "bristol"
   | "greenwich"
   | "lewisham"
   | "southwark"
@@ -51,6 +53,8 @@ export type Years = Array<AvailableYear>;
 export type Vehicles = Array<{ value: AvailableVehicle; label: string }>;
 
 export const AREAS: Areas = [
+  { value: "brighton", label: "Brighton" },
+  { value: "bristol", label: "Bristol" },
   { value: "greenwich", label: "Greenwich" },
   { value: "lewisham", label: "Lewisham" },
   { value: "southwark", label: "Southwark" },
@@ -121,6 +125,22 @@ export const TOPO_MAP_DATA: MapData = {
     center: [-2.244644, 55.7], // Manchester longitude
     scale: 1700,
   },
+  brighton: {
+    label: "Brighton",
+    mapDataFile: "./data/topoJson/brighton/topo_E06000043.json",
+    mapDataFileType: "topoJson",
+    objectName: "E06000043",
+    center: [-0.105, 50.84],
+    scale: 125000,
+  }, 
+  bristol: {
+    label: "Bristol",
+    mapDataFile: "./data/topoJson/bristol/topo_E06000023.json",
+    mapDataFileType: "topoJson",
+    objectName: "E06000023",
+    center: [-2.60, 51.485],
+    scale: 125000,
+  }, 
   greenwich: {
     label: "Greenwich",
     mapDataFile: "./data/topoJson/london/greenwich/topo_E09000011.json",
@@ -158,6 +178,12 @@ export const TOPO_MAP_DATA: MapData = {
 export const TRAFFIC_DATA: TrafficData = {
   gb: {
     trafficDataFile: "./data/csv/dft_traffic_counts_aadf_by_direction.csv",
+  },
+  brighton: {
+    trafficDataFile: "./data/csv/brighton.csv",
+  },
+  bristol: {
+    trafficDataFile: "./data/csv/bristol.csv",
   },
   greenwich: {
     trafficDataFile: "./data/csv/greenwich.csv",

@@ -25,15 +25,16 @@ type MapChartProps = {
   h?: number;
 };
 
+type GeoJsonMapData =
+  | FeatureCollection<Geometry, GeoJsonProperties>
+  | Feature<Geometry, GeoJsonProperties>
+  | undefined;
+
 export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [data, setData] = useState<d3.DSVRowArray<string>>();
-  const [geoMapData, setGeoMapData] = useState<
-    | FeatureCollection<Geometry, GeoJsonProperties>
-    | Feature<Geometry, GeoJsonProperties>
-    | undefined
-  >();
+  const [geoMapData, setGeoMapData] = useState<GeoJsonMapData>();
 
   const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
   const [selectedVehicle, setSelectedVehicle] = useState<AvailableVehicle>(

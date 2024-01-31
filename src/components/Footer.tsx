@@ -1,10 +1,10 @@
+import d3logo from "../assets/images/d3_200_cir.png";
+
 export default function Footer() {
   return (
-    <footer className="w100pc mar-10 txt-c radius-8 is-slategrey">
-      <p>
-        <b>Data Sources</b>
-      </p>
-      <p className="txt-14 line-plus">
+    <footer className="w100pc mar-10 txt-c radius-8 txt-14 is-slategrey">
+      <h4>Data Sources</h4>
+      <p className="line-plus">
         <a
           className="a1"
           href="https://martinjc.github.io/UK-GeoJSON/"
@@ -16,7 +16,7 @@ export default function Footer() {
         </a>
         : UK boundary data for maps by martinjc.
       </p>
-      <p className="txt-14 line-plus">
+      <p className="line-plus">
         <a
           className="a1"
           href="https://roadtraffic.dft.gov.uk/downloads"
@@ -29,11 +29,11 @@ export default function Footer() {
         : information collected over the last 23 years (2000-2022), across
         45,865 manual count points.
       </p>
-      <h4><span id="gradient-text">App Development</span></h4>
-      <p className="txt-14 line-plus">
-        Built using TS, React and D3
-        <br />
-        by Nicola Grassini (2024)
+      <h4>
+        <span id="gradient-text">App Development</span>
+      </h4>
+      <p className="line-plus">
+        Built by Nicola Grassini using TS, React and D3
         <br />
         GitHub:{" "}
         <a
@@ -46,6 +46,13 @@ export default function Footer() {
           kinolag
         </a>
       </p>
+      <img
+        src={d3logo}
+        width="72px"
+        alt="D3.js logo"
+        className="shadow-bbb"
+        style={{ marginBottom: "10px" }}
+      />
     </footer>
   );
 }

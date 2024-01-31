@@ -41,7 +41,7 @@ export default function MapChart({
   const [data, setData] = useState<d3.DSVRowArray<string>>();
   const [geoMapData, setGeoMapData] = useState<GeoJsonMapData>();
 
-  const [selectedArea, setSelectedArea] = useState<AvailableArea>("aa");
+  const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
   const [selectedVehicle, setSelectedVehicle] = useState<AvailableVehicle>(
     VEHICLES[0].value
   );

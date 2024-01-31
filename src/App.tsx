@@ -9,17 +9,29 @@ import Footer from "./components/Footer";
  * set PUBLIC_URL in build script
  * */
 
+import { useState, ReactElement } from "react";
+
 function App() {
+  const [error, setError] = useState<string | null>();
+  const ErrorBoundary = ({ children }: { children: ReactElement }) => {
+    if (error) {
+      return <p className="txt-c is-orangered line-plus">{error}</p>;
+    }
+    return children;
+  };
+
   return (
     <div
       className="centeredColumn w90pc"
       style={{ maxWidth: "960px", margin: "auto" }}
     >
       <Header />
-      <main className="w100pc">
-        <MapChart />
-        <Legend />
-      </main>
+      <ErrorBoundary>
+        <main className="w100pc">
+          <MapChart setError={setError} />
+          <Legend />
+        </main>
+      </ErrorBoundary>
       <Footer />
     </div>
   );

@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Dispatch } from "react";
 import Loader from "./Loader";
 import { FiltersRow, YearSlider } from "./Filters";
 import {
@@ -23,6 +23,7 @@ import {
 type MapChartProps = {
   w?: number;
   h?: number;
+  setError: Dispatch<string>;
 };
 
 type GeoJsonMapData =
@@ -30,13 +31,17 @@ type GeoJsonMapData =
   | Feature<Geometry, GeoJsonProperties>
   | undefined;
 
-export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
+export default function MapChart({
+  w = 650,
+  h = 650,
+  setError,
+}: MapChartProps) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [data, setData] = useState<d3.DSVRowArray<string>>();
   const [geoMapData, setGeoMapData] = useState<GeoJsonMapData>();
 
-  const [selectedArea, setSelectedArea] = useState<AvailableArea>("lewisham");
+  const [selectedArea, setSelectedArea] = useState<AvailableArea>("aa");
   const [selectedVehicle, setSelectedVehicle] = useState<AvailableVehicle>(
     VEHICLES[0].value
   );
@@ -79,10 +84,11 @@ export default function MapChart({ w = 650, h = 650 }: MapChartProps) {
       });
     } catch (e) {
       console.log(e);
+      setError("An error occurred while loading data.");
     } finally {
       setLoading(false);
     }
-  }, [selectedArea]);
+  }, [selectedArea, setError]);
 
   useEffect(() => {
     loadData();

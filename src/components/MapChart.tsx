@@ -242,7 +242,15 @@ export default function MapChart({
                         onPointerUp={() => {
                           deselectPoint();
                         }}
-                      />
+                      >
+                        {selectedNode && (
+                          <title>
+                            Point ID: {selectedNode.Count_point_id} | Direction:{" "}
+                            {selectedNode.direction_of_travel} |{" "}
+                            {selectedNodeLabel}: {selectedNode[selectedVehicle]}
+                          </title>
+                        )}
+                      </circle>
                     )
                 )}
                 <InfoOverlay />

@@ -1,4 +1,4 @@
-# traffic - geospatial visualisation app
+# traffic - responsive geospatial visualisation app
 
 Built with __TypeScript__, __React__, __D3__, __GeoJSON__, __TopoJson__.
 

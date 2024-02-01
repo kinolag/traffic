@@ -30,7 +30,7 @@ export default function Footer() {
         45,865 manual count points.
       </p>
       <h4>
-        <span id="gradient-text">App Development</span>
+        <span className="gradient-text">App Development</span>
       </h4>
       <p className="line-plus">
         Built by Nicola Grassini using TS, React and D3
@@ -48,7 +48,7 @@ export default function Footer() {
       </p>
       <img
         src={d3logo}
-        width="72px"
+        width="64px"
         alt="D3.js logo"
         className="shadow-bbb"
         style={{ marginBottom: "10px" }}

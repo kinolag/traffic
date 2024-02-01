@@ -282,11 +282,11 @@ select {
   color: #252c8d;
 }
 
-#grad {
-  background-image: linear-gradient(to right, #252c8d, #f9f8c7, #950015);
+.gradient-e {
+  background-image: linear-gradient(to bottom, #eee, #fff);
 }
 
-#gradient-text {
+.gradient-text {
   background-image: linear-gradient(to right, #252c8d, #f9f8c7, #950015);
   color: transparent;
   text-align: center;

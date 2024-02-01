@@ -186,7 +186,7 @@ export default function MapChart({
             selectedVehicle={selectedVehicle}
             setSelectedVehicle={setSelectedVehicle}
           />
-          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[selectedArea].label}`}</p>
+          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg border-1">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[selectedArea].label}`}</p>
           <YearSlider
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}

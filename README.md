@@ -16,6 +16,8 @@ Features:
 
 • display an animated loader while data is being fetched
 
+• display a fallback UI if data fetching fails
+
 The app is responsive and works on touch screen devices too.
 
 Deployed to [kinola.it/app/traffic/](https://kinola.it/app/traffic/)

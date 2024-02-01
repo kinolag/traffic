@@ -62,6 +62,7 @@ export default function Legend({ chartType }: LegendProps) {
           width="50%"
           height="5px"
           alt="RYB color scale"
+          title="RYB color scale"
         />
         <span style={{ paddingLeft: "10px" }}>Highest</span>
       </div>

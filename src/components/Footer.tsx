@@ -50,6 +50,7 @@ export default function Footer() {
         src={d3logo}
         width="64px"
         alt="D3.js logo"
+        title="D3.js logo"
         className="shadow-bbb"
         style={{ marginBottom: "10px" }}
       />

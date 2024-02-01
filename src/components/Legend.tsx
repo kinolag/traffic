@@ -24,26 +24,10 @@ export default function Legend({ chartType }: LegendProps) {
           marginBottom: "5px",
         }}
       >
-        <span style={{ paddingRight: "10px" }}>Lowest</span>
-        <span
-          style={{
-            borderRadius: "50%",
-            background: "#252c8d",
-            width: "4px",
-            height: "4px",
-            marginRight: "7px",
-          }}
-        />
-        <span
-          style={{
-            borderRadius: "50%",
-            background: "#950015",
-            width: "32px",
-            height: "32px",
-            marginLeft: "7px"
-          }}
-        />
-        <span style={{ paddingLeft: "10px" }}>Highest</span>
+        <span style={{ marginRight: "10px" }}>Lowest</span>
+        <span className="lowest" style={{ marginRight: "7px" }} />
+        <span className="highest" style={{ marginLeft: "7px" }} />
+        <span style={{ marginLeft: "10px" }}>Highest</span>
       </div>
       <p>
         • <strong className="is-dsg">Color scale</strong>: Blue - Yellow - Red
@@ -55,7 +39,7 @@ export default function Legend({ chartType }: LegendProps) {
           marginBottom: "5px",
         }}
       >
-        <span style={{ paddingRight: "10px" }}>Lowest</span>
+        <span style={{ marginRight: "10px" }}>Lowest</span>
         <img
           className="flip-horizontal"
           src={interpolateRdYlBu}
@@ -64,7 +48,7 @@ export default function Legend({ chartType }: LegendProps) {
           alt="RYB color scale"
           title="RYB color scale"
         />
-        <span style={{ paddingLeft: "10px" }}>Highest</span>
+        <span style={{ marginLeft: "10px" }}>Highest</span>
       </div>
     </div>
   );

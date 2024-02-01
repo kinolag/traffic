@@ -319,6 +319,20 @@ select {
   width: 50%;
 }
 
+.lowest {
+  border-radius: 50%;
+  background: #252c8d;
+  width: 4px;
+  height: 4px;
+}
+
+.highest {
+  border-radius: 50%;
+  background: #950015;
+  width: 32px;
+  height: 32px;
+}
+
 /* links */
 
 .a1 {
@@ -362,5 +376,15 @@ select {
 
   .txt-overlay {
     font-size: 16px;
+  }
+
+  .lowest {
+    width: 3px;
+    height: 3px;
+  }
+
+  .highest {
+    width: 16px;
+    height: 16px;
   }
 }

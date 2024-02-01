@@ -4,7 +4,11 @@ export default function Header() {
       className="w100pc txt-c radius-8 is-dsg gradient-e"
       style={{ marginTop: "10px" }}
     >
-      <h4>Traffic: Geospatial Visualisation App</h4>
+      <h4>
+        Traffic
+        <br />
+        Responsive Geospatial Visualisation
+      </h4>
     </header>
   );
 }

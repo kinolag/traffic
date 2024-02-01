@@ -17,6 +17,34 @@ export default function Legend({ chartType }: LegendProps) {
         • <strong className="is-dsg">Dimensions</strong>: a larger size
         represents a higher value (linear scale).
       </p>
+      <div
+        className="w100pc spacedRow txt-13"
+        style={{
+          justifyContent: "center",
+          marginBottom: "5px",
+        }}
+      >
+        <span style={{ paddingRight: "10px" }}>Lowest</span>
+        <span
+          style={{
+            borderRadius: "50%",
+            background: "#252c8d",
+            width: "4px",
+            height: "4px",
+            marginRight: "7px",
+          }}
+        />
+        <span
+          style={{
+            borderRadius: "50%",
+            background: "#950015",
+            width: "32px",
+            height: "32px",
+            marginLeft: "7px"
+          }}
+        />
+        <span style={{ paddingLeft: "10px" }}>Highest</span>
+      </div>
       <p>
         • <strong className="is-dsg">Color scale</strong>: Blue - Yellow - Red
       </p>

@@ -351,6 +351,10 @@ select {
   border-radius: 50%;
 }
 
+.point {
+  cursor: pointer;
+}
+
 /* links */
 
 .a1 {

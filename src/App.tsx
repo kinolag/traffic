@@ -1,7 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import MapChart from "./components/MapChart";
-import Legend from "./components/Legend";
+import DataWrapper from "./components/DataWrapper";
 import Footer from "./components/Footer";
 
 /** handling production and development:
@@ -28,8 +27,7 @@ function App() {
       <Header />
       <ErrorBoundary>
         <main className="w100pc">
-          <MapChart setError={setError} />
-          <Legend chartType="Map" />
+          <DataWrapper setError={setError} />
         </main>
       </ErrorBoundary>
       <Footer />

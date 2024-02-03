@@ -61,6 +61,7 @@ export type Years = Array<AvailableYear>;
 
 export type Vehicles = Array<{ value: AvailableVehicle; label: string }>;
 
+/* these labels (to display in select menu) may differ from TOPO_MAP_DATA ones */
 export const AREAS: Areas = [
   // { value: "brighton", label: "Brighton" },
   // { value: "bristol", label: "Bristol" },

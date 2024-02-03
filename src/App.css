@@ -167,7 +167,11 @@ select {
   letter-spacing: 0.25rem;
 }
 
-.line-plus {
+.line-1-3 {
+  line-height: 1.3em;
+}
+
+.line-1-5 {
   line-height: 1.5em;
 }
 

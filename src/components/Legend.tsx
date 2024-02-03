@@ -10,12 +10,12 @@ export default function Legend({ chartType }: LegendProps) {
   return (
     <div className="pad-5 txt-c txt-14 is-slategrey">
       <h3 className="is-dsg">{chartType} Chart Legend</h3>
-      <p className="line-plus">
+      <p className="line-1-5">
         • <strong className="is-dsg">Parameters</strong>: circles represent the{" "}
         <strong>number of vehicles</strong> recorded at a traffic point{" "}
         <strong> in the selected year, per vehicle type</strong>.
       </p>
-      <p className="line-plus">
+      <p className="line-1-5">
         • <strong className="is-dsg">Dimensions</strong>: a larger size
         represents a higher value (linear scale).
       </p>

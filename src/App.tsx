@@ -15,7 +15,7 @@ function App() {
   const [error, setError] = useState<string | null>();
   const ErrorBoundary = ({ children }: { children: ReactElement }) => {
     if (error) {
-      return <p className="txt-c is-orangered line-plus">{error}</p>;
+      return <p className="txt-c is-orangered line-1-5">{error}</p>;
     }
     return children;
   };

@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="w100pc mar-10 txt-c radius-8 txt-14 is-slategrey">
       <h4>Data Sources</h4>
-      <p className="line-plus">
+      <p className="line-1-5">
         <a
           className="a1"
           href="https://martinjc.github.io/UK-GeoJSON/"
@@ -16,7 +16,7 @@ export default function Footer() {
         </a>
         : UK boundary data for maps by martinjc.
       </p>
-      <p className="line-plus">
+      <p className="line-1-5">
         <a
           className="a1"
           href="https://roadtraffic.dft.gov.uk/downloads"
@@ -32,7 +32,7 @@ export default function Footer() {
       <h4>
         <span className="gradient-text">App Development</span>
       </h4>
-      <p className="line-plus">
+      <p className="line-1-5">
         Built by Nicola Grassini using TS, React and D3
         <br />
         GitHub:{" "}

@@ -27,6 +27,7 @@ select {
   align-items: center;
 }
 
+.row,
 .row-col {
   display: flex;
   flex-direction: row;
@@ -289,7 +290,6 @@ select {
 .gradient-text {
   background-image: linear-gradient(to right, #252c8d, #f9f8c7, #950015);
   color: transparent;
-  text-align: center;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -320,17 +320,31 @@ select {
 }
 
 .lowest {
-  border-radius: 50%;
   background: #252c8d;
   width: 4px;
   height: 4px;
 }
 
 .highest {
-  border-radius: 50%;
   background: #950015;
   width: 32px;
   height: 32px;
+}
+
+.lower {
+  background: #252c8d;
+  width: 6px;
+  height: 6px;
+}
+
+.higher {
+  background: #950015;
+  width: 8px;
+  height: 8px;
+}
+
+.circle {
+  border-radius: 50%;
 }
 
 /* links */

@@ -25,8 +25,8 @@ export default function Legend({ chartType }: LegendProps) {
         }}
       >
         <span style={{ marginRight: "10px" }}>Lowest</span>
-        <span className="lowest" style={{ marginRight: "7px" }} />
-        <span className="highest" style={{ marginLeft: "7px" }} />
+        <span className="lowest circle" style={{ marginRight: "7px" }} />
+        <span className="highest circle" style={{ marginLeft: "7px" }} />
         <span style={{ marginLeft: "10px" }}>Highest</span>
       </div>
       <p>

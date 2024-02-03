@@ -29,7 +29,7 @@ function App() {
       <ErrorBoundary>
         <main className="w100pc">
           <MapChart setError={setError} />
-          <Legend />
+          <Legend chartType="Map" />
         </main>
       </ErrorBoundary>
       <Footer />

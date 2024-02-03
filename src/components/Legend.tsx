@@ -1,13 +1,15 @@
 import interpolateRdYlBu from "../assets/images/interpolateRdYlBu.png";
 
+type ChartType = "Map" | "Histogram" | "Stacked Bar" | "Scatter Plot";
+
 type LegendProps = {
-  chartType?: string;
+  chartType?: ChartType;
 };
 
 export default function Legend({ chartType }: LegendProps) {
   return (
     <div className="pad-5 txt-c txt-14 is-slategrey">
-      <h3 className="is-dsg">Chart Legend</h3>
+      <h3 className="is-dsg">{chartType} Chart Legend</h3>
       <p className="line-plus">
         • <strong className="is-dsg">Parameters</strong>: circles represent the{" "}
         <strong>number of vehicles</strong> recorded at a traffic point{" "}

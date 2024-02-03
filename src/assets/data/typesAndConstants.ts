@@ -207,7 +207,7 @@ export const TOPO_MAP_DATA: MapData = {
       "./data/topoJson/london/hammersmithAndFulham/topo_E09000013.json",
     mapDataFileType: "topoJson",
     objectName: "E09000013",
-    center: [-0.21, 51.50],
+    center: [-0.21, 51.5],
     scale: 170000,
   },
   islington: {
@@ -320,3 +320,21 @@ export const TRAFFIC_DATA: TrafficData = {
     trafficDataFile: "./data/csv/wandsworth.csv",
   },
 };
+
+/* UI */
+
+export const GREYS = ["#ccc", "#bbb", "#aaa", "#888", "#555", "#333", "#111"];
+
+export const GREENS = [
+  // "#00ff00",
+  // "#00e500",
+  // "#00cc00",
+  "#00b200",
+  "#009900",
+  "#007f00",
+  "#006600",
+  "#004c00",
+  "#003300",
+  "#001900",
+  // "#000000",
+];

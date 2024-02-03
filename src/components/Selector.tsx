@@ -28,6 +28,8 @@ export default function Selector({
   setVehicle,
   setYear,
 }: SelectorProps) {
+  const trimLabel = (str: string) =>
+    str.length > 19 ? str.slice(0, 19) + "." : str;
   return (
     <div className={`row-col ${className}`} style={style}>
       <label htmlFor="options" className="pad-5 txt-14 is-teal">
@@ -38,15 +40,15 @@ export default function Selector({
         name="options"
         id="options"
         value={value}
-        onChange={(e) => {
-          if (setArea) setArea(e.target.value as AvailableArea);
-          if (setVehicle) setVehicle(e.target.value as AvailableVehicle);
-          if (setYear) setYear(e.target.value as AvailableYear);
+        onChange={({ target: { value } }) => {
+          if (setArea) setArea(value as AvailableArea);
+          if (setVehicle) setVehicle(value as AvailableVehicle);
+          if (setYear) setYear(value as AvailableYear);
         }}
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>
-            {o.label}
+            {trimLabel(o.label)}
           </option>
         ))}
       </select>

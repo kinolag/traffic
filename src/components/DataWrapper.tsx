@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import { useState, useEffect, useCallback, Dispatch } from "react";
+import { view } from "../utils/utils";
 import Loader from "./Loader";
 import { FiltersRow, YearSlider } from "./Filters";
 import MapChart from "./MapChart";
@@ -90,6 +91,18 @@ export default function DataWrapper({ setError }: DataWrapperProps) {
     /* sort by descending value/size to reduce occlusion */
     .sort((a, b) => +b[selectedVehicle] - +a[selectedVehicle]);
 
+  const InfoHeader = ({ text }: { text: string }) => (
+    <p
+      className={`txt-c pad-5 radius-4 bg-fc0 is-dsg border-c ${
+        view.sm ? "txt-14" : "txt-16"
+      }`}
+    >
+      {text}
+    </p>
+  );
+
+  const mapInfo = `Displaying ${dataByYear?.length} traffic points in ${TOPO_MAP_DATA[selectedArea].label}`;
+
   return (
     <div className="w100pc">
       {loading && (
@@ -103,11 +116,11 @@ export default function DataWrapper({ setError }: DataWrapperProps) {
             selectedVehicle={selectedVehicle}
             setSelectedVehicle={setSelectedVehicle}
           />
-          <p className="txt-c pad-5 radius-8 bg-fc0 is-dsg border-1">{`Displaying ${dataByYear.length} traffic points in ${TOPO_MAP_DATA[selectedArea].label}`}</p>
           <YearSlider
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}
           />
+          <InfoHeader text={mapInfo} />
           <MapChart
             w={WIDTH}
             h={WIDTH}

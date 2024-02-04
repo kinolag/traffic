@@ -22,7 +22,7 @@ import {
   TRAFFIC_DATA,
 } from "../assets/data/typesAndConstants";
 
-const WIDTH = 650;
+const WIDTH = 600;
 
 type DataWrapperProps = {
   setError: Dispatch<string>;

@@ -19,8 +19,8 @@ type MapChartProps = {
 };
 
 export default function MapChart({
-  w = 650,
-  h = 650,
+  w = 600,
+  h = 600,
   geoMapData,
   dataByYear,
   selectedArea,

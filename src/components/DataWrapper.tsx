@@ -126,7 +126,7 @@ export default function DataWrapper({ setError }: DataWrapperProps) {
           <InfoHeader text={barInfo} />
           <StackedBarChart
             w={WIDTH}
-            h={view.sm ? 210 : 170}
+            h={view.sm ? 215 : 170}
             dataByYear={dataByYear}
             selectedVehicle={selectedVehicle}
             setSelectedVehicle={setSelectedVehicle}

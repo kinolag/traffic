@@ -9,9 +9,9 @@ import { view } from "../utils/utils";
 
 const Y_MARGIN = 10;
 
-const BAR_HEIGHT = view.sm ? 32 : 24;
+const BAR_HEIGHT = view.sm ? 36 : 26;
 const X_OFFSET = 4;
-const Y_OFFSET = view.sm ? 42 : 34;
+const Y_OFFSET = view.sm ? 46 : 34;
 
 type StackedBarChartProps = {
   w?: number;

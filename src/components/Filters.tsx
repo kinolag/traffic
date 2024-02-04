@@ -51,7 +51,8 @@ export const YearSlider = ({
       className="w100pc spacedRow"
       style={{
         justifyContent: "center",
-        marginBottom: "10px",
+        marginTop: "15px",
+        marginBottom: "15px",
       }}
     >
       <div className="txt-14 is-teal" style={{ paddingRight: "10px" }}>
@@ -64,7 +65,7 @@ export const YearSlider = ({
         value={+selectedYear}
         min={+YEARS[0]}
         max={+YEARS[YEARS.length - 1]}
-        height={6}
+        height={7}
         setYear={setSelectedYear}
       />
       <div className="txt-14 is-teal" style={{ paddingLeft: "15px" }}>

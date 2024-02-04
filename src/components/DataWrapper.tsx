@@ -4,6 +4,7 @@ import { view } from "../utils/utils";
 import Loader from "./Loader";
 import { FiltersRow, YearSlider } from "./Filters";
 import MapChart from "./MapChart";
+import StackedBarChart from "./StackedBarChart";
 import {
   Feature,
   FeatureCollection,
@@ -91,6 +92,8 @@ export default function DataWrapper({ setError }: DataWrapperProps) {
     /* sort by descending value/size to reduce occlusion */
     .sort((a, b) => +b[selectedVehicle] - +a[selectedVehicle]);
 
+  const [expandBar, setExpandBar] = useState<boolean>(false);
+
   const InfoHeader = ({ text }: { text: string }) => (
     <p
       className={`txt-c pad-5 radius-4 bg-fc0 is-dsg border-c ${
@@ -100,6 +103,10 @@ export default function DataWrapper({ setError }: DataWrapperProps) {
       {text}
     </p>
   );
+
+  const barInfo = `Traffic by vehicle type ${
+    expandBar ? "(click bar to close)" : "(click or mouse over bar)"
+  }`;
 
   const mapInfo = `Displaying ${dataByYear?.length} traffic points in ${TOPO_MAP_DATA[selectedArea].label}`;
 
@@ -115,6 +122,16 @@ export default function DataWrapper({ setError }: DataWrapperProps) {
             setSelectedArea={setSelectedArea}
             selectedVehicle={selectedVehicle}
             setSelectedVehicle={setSelectedVehicle}
+          />
+          <InfoHeader text={barInfo} />
+          <StackedBarChart
+            w={WIDTH}
+            h={view.sm ? 210 : 170}
+            dataByYear={dataByYear}
+            selectedVehicle={selectedVehicle}
+            setSelectedVehicle={setSelectedVehicle}
+            expandBar={expandBar}
+            setExpandBar={setExpandBar}
           />
           <YearSlider
             selectedYear={selectedYear}

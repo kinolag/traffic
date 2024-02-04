@@ -1,6 +1,6 @@
 # traffic - responsive geospatial visualisation app
 
-Built with __TypeScript__, __React__, __D3__, __GeoJSON__, __TopoJson__.
+Built with __TypeScript__, __React__, __D3__, __GeoJSON__, __TopoJson__ and __SVG__.
 
 The app visualises part of the information about the [road traffic statistics](https://roadtraffic.dft.gov.uk/downloads) collected in the UK over 23 years (2000-2022), across 45,865 manual count points.
 

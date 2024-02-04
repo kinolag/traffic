@@ -44,7 +44,7 @@ export default function Footer() {
           title="Developer's GitHub profile"
         >
           kinolag
-        </a>
+        </a> (01/2024)
       </p>
       <img
         src={d3logo}

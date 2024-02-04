@@ -2,13 +2,15 @@
 
 Built with __TypeScript__, __React__, __D3__, __GeoJSON__, __TopoJson__.
 
-The app visualises part of the information about the [road traffic statistics](https://roadtraffic.dft.gov.uk/downloads) collected in the UK over the last 23 years (2000-2022), across 45,865 manual count points.
+The app visualises part of the information about the [road traffic statistics](https://roadtraffic.dft.gov.uk/downloads) collected in the UK over 23 years (2000-2022), across 45,865 manual count points.
 
 Traffic data is displayed over a [GeoJSON representation](https://martinjc.github.io/UK-GeoJSON/) of the selected area generated with [D3.js](https://d3js.org/).
 
+A second chart shows the distribution of traffic in the area by vehicle type.
+
 Features:
 
-• view traffic points in selected `area`
+• view traffic points in selected `area`, and related traffic details for each point
 
 • see gradual evolution by modifying `year` via custom slider
 

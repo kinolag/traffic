@@ -28,6 +28,8 @@ Deployed to [kinola.it/app/traffic/](https://kinola.it/app/traffic/)
 
 All Inner London Boroughs are currently covered.
 
+[Image source: Wikimedia](https://commons.wikimedia.org/wiki/File:Outer_Inner_London_Boroughs.png)
+
 ![London Boroughs](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Outer_Inner_London_Boroughs.png/776px-Outer_Inner_London_Boroughs.png)
 
 ## Available Scripts

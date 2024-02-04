@@ -4,8 +4,6 @@ Built with __TypeScript__, __React__, __D3__, __GeoJSON__, __TopoJson__ and __SV
 
 The app visualises part of the information about the [road traffic statistics](https://roadtraffic.dft.gov.uk/downloads) collected in the UK over 23 years (2000-2022), across 45,865 manual count points.
 
-All areas of Inner London are covered.
-
 Traffic data is displayed over a [GeoJSON representation](https://martinjc.github.io/UK-GeoJSON/) of the selected area generated with [D3.js](https://d3js.org/).
 
 A second chart shows the distribution of traffic in the area by vehicle type.
@@ -26,6 +24,11 @@ The app is responsive and works on touch screen devices too.
 
 Deployed to [kinola.it/app/traffic/](https://kinola.it/app/traffic/)
 
+## Areas covered
+
+All Inner London Boroughs are currently covered.
+
+![London Boroughs](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Outer_Inner_London_Boroughs.png/776px-Outer_Inner_London_Boroughs.png)
 
 ## Available Scripts
 

@@ -91,13 +91,16 @@ export default function MapChart({
         <tspan x={30} dy="1.5em">
           Direction of travel: {selectedNode.direction_of_travel}
         </tspan>
-        <tspan
-          x={30}
-          dy="1.5em"
-          fill={scaleValueToColor(+selectedNode[selectedVehicle])}
-          fontWeight="bold"
-        >
-          {selectedNodeLabel}: {selectedNode[selectedVehicle]}
+        <tspan x={30} dy="1.5em">
+          {selectedNodeLabel}:{" "}
+          <tspan
+            strokeWidth={1}
+            fill={"#ccc"}
+            stroke={scaleValueToColor(+selectedNode[selectedVehicle])}
+            fontWeight="bold"
+          >
+            {selectedNode[selectedVehicle]}
+          </tspan>
         </tspan>
       </text>
     ) : (

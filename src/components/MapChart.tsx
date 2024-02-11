@@ -79,30 +79,36 @@ export default function MapChart({
 
   const InfoOverlay = () => {
     return selectedNode ? (
-      <text className="txt-overlay" fill="teal" x={30} y={40}>
-        <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
-        <tspan x={30} dy="1.5em">
-          Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
-          {(+selectedNode.Longitude).toFixed(2)}
-        </tspan>
-        <tspan x={30} dy="1.5em">
-          Road name: {selectedNode.Road_name}
-        </tspan>
-        <tspan x={30} dy="1.5em">
-          Direction of travel: {selectedNode.direction_of_travel}
-        </tspan>
-        <tspan x={30} dy="1.5em">
-          {selectedNodeLabel}:{" "}
-          <tspan
-            strokeWidth={1}
-            fill={"#ccc"}
-            stroke={scaleValueToColor(+selectedNode[selectedVehicle])}
-            fontWeight="bold"
-          >
-            {selectedNode[selectedVehicle]}
+      <g>
+        <circle
+          cx={36 - scaleToRadius(+selectedNode[selectedVehicle], [2, 16])}
+          cy={44}
+          r={scaleToRadius(+selectedNode[selectedVehicle], [2, 16])}
+          style={{
+            fill: scaleValueToColor(+selectedNode[selectedVehicle]),
+            fillOpacity: 1,
+            stroke: "#bbb",
+            strokeWidth: ".5px",
+          }}
+        />
+        <text className="txt-overlay" fill="teal" x={40} y={40}>
+          <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
+          <tspan x={40} dy="1.5em">
+            Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
+            {(+selectedNode.Longitude).toFixed(2)}
           </tspan>
-        </tspan>
-      </text>
+          <tspan x={40} dy="1.5em">
+            Road name: {selectedNode.Road_name}
+          </tspan>
+          <tspan x={40} dy="1.5em">
+            Direction of travel: {selectedNode.direction_of_travel}
+          </tspan>
+          <tspan x={40} dy="1.5em">
+            {selectedNodeLabel}:{" "}
+            <tspan fontWeight="bold">{selectedNode[selectedVehicle]}</tspan>
+          </tspan>
+        </text>
+      </g>
     ) : (
       <text className="txt-overlay" fill="teal" x={30} y={40}>
         Mouse over a map point for details

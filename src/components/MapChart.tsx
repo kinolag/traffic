@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Legend from "./Legend";
 import {
   type AvailableArea,
@@ -26,6 +26,8 @@ export default function MapChart({
   selectedArea,
   selectedVehicle,
 }: MapChartProps) {
+  const mapWrapper: React.MutableRefObject<SVGGElement | null> = useRef(null);
+
   const [selectedNode, setSelectedNode] =
     useState<d3.DSVRowString<string> | null>(null);
 
@@ -80,18 +82,29 @@ export default function MapChart({
   const InfoOverlay = () => {
     return selectedNode ? (
       <g>
+        {/* rect as a background */}
+        <rect
+          x={0}
+          y={0}
+          width={w / 2.4}
+          height={w / 4.8}
+          fill="white"
+          stroke="#ccc"
+          strokeWidth={0.5}
+          opacity={0.9}
+        />
         <circle
           cx={36 - scaleToRadius(+selectedNode[selectedVehicle], [2, 16])}
-          cy={44}
+          cy={39}
           r={scaleToRadius(+selectedNode[selectedVehicle], [2, 16])}
           style={{
             fill: scaleValueToColor(+selectedNode[selectedVehicle]),
-            fillOpacity: 1,
+            fillOpacity: 0.85,
             stroke: "#bbb",
             strokeWidth: ".5px",
           }}
         />
-        <text className="txt-overlay" fill="teal" x={40} y={40}>
+        <text className="txt-overlay" fill="teal" x={40} y={35}>
           <tspan>Traffic Point ID: {selectedNode.Count_point_id}</tspan>
           <tspan x={40} dy="1.5em">
             Latitude: {(+selectedNode.Latitude).toFixed(2)}, Longitude:{" "}
@@ -110,11 +123,39 @@ export default function MapChart({
         </text>
       </g>
     ) : (
-      <text className="txt-overlay" fill="teal" x={30} y={40}>
-        Mouse over a map point for details
+      <text className="txt-overlay" fill="teal" x={40} y={35}>
+        <tspan>Zoom and pan on the map</tspan>
+        <tspan x={40} dy="1.5em">
+          or mouse over a map point for details
+        </tspan>
       </text>
     );
   };
+
+  const handleZoom = (e: d3.D3ZoomEvent<SVGElement, unknown>) => {
+    d3.select(mapWrapper.current as SVGGElement).attr(
+      "transform",
+      e.transform as any
+    );
+  };
+
+  const zoomBehavior: d3.ZoomBehavior<Element, unknown> = d3
+    .zoom()
+    /* limit extent of scale and pan */
+    .scaleExtent([1, 2.5])
+    .translateExtent([
+      [0, 0],
+      [w, h],
+    ])
+    .on("zoom", handleZoom);
+
+  useEffect(() => {
+    const zoomInit = () => {
+      if (mapWrapper.current)
+        d3.select<Element, unknown>(mapWrapper.current).call(zoomBehavior);
+    };
+    zoomInit();
+  }, [w, h, zoomBehavior]);
 
   return (
     <div className="relative">
@@ -125,7 +166,7 @@ export default function MapChart({
         style={{ width: "100%" }}
         viewBox={`0 0 ${w} ${h}`}
       >
-        <g>
+        <g ref={mapWrapper}>
           {generatedPath && (
             <path
               style={{ opacity: 0.3 }}
@@ -174,8 +215,8 @@ export default function MapChart({
                 </circle>
               )
           )}
-          <InfoOverlay />
         </g>
+        <InfoOverlay />
       </svg>
       <Legend chartType="Map" />
     </div>

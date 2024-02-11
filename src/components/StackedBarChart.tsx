@@ -59,7 +59,7 @@ export default function StackedBarChart({
 
   const barWidths: number[] =
     /* find fraction */
-    // fraction : width = total : totalSum
+    /* fraction : width = total : totalSum */
     totalsByVehicle
       .map((t) => t.total)
       .map((t) => (availableWidth * t) / totalSum);
@@ -100,25 +100,8 @@ export default function StackedBarChart({
                   {percent(v)}%)
                 </title>
               </rect>
-              {/* <text
-                  x={widthOfPreceding(i) + 3}
-                  y={18}
-                  fill="white"
-                  className="txt-10"
-                >
-                  {percent(v)}%
-                </text> */}
               {expandBar && (
                 <g>
-                  {/* for horizontal view */}
-                  {/* <circle  
-                    // width={5}
-                    // height={5}
-                    r={3}
-                    cx={widthOfPreceding(i) + 4}
-                    cy={BAR_HEIGHT - 4 + 20 * (i + 1)}
-                    fill={totalsByVehicle[i].color}
-                  /> */}
                   <text
                     style={{
                       fontWeight:
@@ -127,10 +110,6 @@ export default function StackedBarChart({
                           : "normal",
                     }}
                     className="point txt-overlay"
-                    /* for horizontal view */
-                    // x={widthOfPreceding(i) + 10}
-                    // y={BAR_HEIGHT + 20 * (i + 1)}
-                    // ~ desktop/diagonal view
                     x={0}
                     y={0}
                     transform={`translate(${

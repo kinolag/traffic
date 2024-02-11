@@ -86,8 +86,8 @@ export default function MapChart({
         <rect
           x={0}
           y={0}
-          width={w / 2.4}
-          height={w / 4.8}
+          width={w / 2.0}
+          height={w / 4.5}
           fill="white"
           stroke="#ccc"
           strokeWidth={0.5}
@@ -95,7 +95,7 @@ export default function MapChart({
         />
         <circle
           cx={36 - scaleToRadius(+selectedNode[selectedVehicle], [2, 16])}
-          cy={39}
+          cy={30}
           r={scaleToRadius(+selectedNode[selectedVehicle], [2, 16])}
           style={{
             fill: scaleValueToColor(+selectedNode[selectedVehicle]),
